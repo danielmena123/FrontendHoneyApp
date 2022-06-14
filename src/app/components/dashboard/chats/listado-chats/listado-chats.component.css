@@ -22,6 +22,9 @@
     overflow-y: scroll;
     scrollbar-width: thin;
 }
+.content-chat{
+    justify-content: space-between;
+}
 /* .fecha-head{
     margin-left: 8px;
     margin-top: 2px;

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UsuarioAccess } from 'src/app/models/access';
 import { Salas } from 'src/app/models/chats';
+import { ChatsService } from 'src/app/services/chats.service';
 import { DataService } from 'src/app/services/data.service';
 import { PublicacionesService } from 'src/app/services/publicaciones.service';
 import { SecurityService } from 'src/app/services/security.service';
@@ -29,6 +30,7 @@ export class NavbarComponent implements OnInit {
     private securityServices: SecurityService, 
     private router: Router,
     private signalr: SignalrcustomService,
+    private chatService: ChatsService,
     private dataservice: DataService,
     private publicacionesService: PublicacionesService
     ) {
@@ -48,11 +50,15 @@ export class NavbarComponent implements OnInit {
       }
     });    
     this.signalr.emitirMensaje.subscribe(res => {
-      console.log(res);
       if(res != null && res.usuariosId != this.usuario.usuariosId){
         this.newNotifyMessag = true;
       }
     });
+    this.chatService.$changeChatNotify.subscribe(res => {
+      if(res == false){
+        this.newNotifyMessag = false;
+      }
+    })
   }
 
   //Cargar Usuario
@@ -65,7 +71,6 @@ export class NavbarComponent implements OnInit {
     const url = `${this.apiURL}/Salas/${this.usuario.usuariosId}`;
     this.dataservice.get<Salas[]>(url).subscribe(res => {
       res.body!.forEach(item => {
-        console.log(item.rooms);
         this.signalr.hubConnection.invoke("AddToGroup", item.rooms);
       });
     })
@@ -79,11 +84,6 @@ export class NavbarComponent implements OnInit {
   notifyPubliFalse(){
     this.newNotify = false;    
     this.publicacionesService.$refreshPubli.emit(true);
-  }
-
-  notifyMessageFalse(){
-    this.newNotifyMessag = false;    
-    // this.publicacionesService.$refreshPubli.emit(true);
   }
 
 }

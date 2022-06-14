@@ -23,7 +23,6 @@ export class ListadoChatsComponent implements OnInit {
 
   constructor(
     private service: ChatsService, 
-    private modal: ModalesService, 
     private signalr: SignalrcustomService,
     private dataService: DataService,
     private securityServices: SecurityService
@@ -35,18 +34,16 @@ export class ListadoChatsComponent implements OnInit {
     this.CargarUsuario();
     this.CargarDatos();
 
-    //Subscribirse a la funcion del modal
-    this.modal.$refreshChats.subscribe(data => {
-      if(data == true){
-        this.ngOnInit();
+    this.signalr.emitirMensaje.subscribe(res => {
+      if(res != null){
+        this.chats.forEach(item => {
+          if(item.chatsId = res.chatsId){
+            // item.mensaje = res.descripcion;
+            this.ngOnInit();
+          }
+        })
       }
-    });
-    // Subscribir a signlar
-    // this.signalr.emitirChat.subscribe(data => {
-    //   console.log(data);
-    //   data.shortime = true;
-    //   this.chats.push(data);
-    // })
+    })
   }
 
   CargarDatos(){
@@ -85,6 +82,7 @@ export class ListadoChatsComponent implements OnInit {
     }
 
     this.service.$changeChat.emit(data);    
+    this.service.$changeChatNotify.emit(false);
   }
 
 }

@@ -16,7 +16,7 @@ export class SignalrcustomService {
   emitirChat: EventEmitter<Chats> = new EventEmitter();
   notifyNewPub: EventEmitter<boolean> = new EventEmitter();
   connectionEstablished = new EventEmitter<boolean>();
-  // public hubConnection : HubConnection;
+  
   public hubConnection : signalR.HubConnection
   private connectionIsEstablished = false;
 

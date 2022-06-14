@@ -5,11 +5,11 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class ChatsService {
-  private urlAPI = environment.apiURL;
 
   constructor() { }
 
   $newChat = new EventEmitter<any>();
   $changeChat = new EventEmitter<any>();
+  $changeChatNotify = new EventEmitter<any>();
 
 }

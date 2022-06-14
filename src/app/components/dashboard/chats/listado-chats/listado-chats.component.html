@@ -18,9 +18,12 @@
                             </mat-card-title>
                             </mat-card-header>
                             <mat-card-content>
-                                <p>{{c.mensaje}}</p>
+                                <div class="d-flex content-chat">
+                                    <p>{{c.mensaje}}</p><p *ngIf="c.noLeidos > 0"><strong>{{c.noLeidos}}</strong></p>
+                                </div>
+                                <hr>
                                 <h4 *ngIf="c.shortime == true" class="fecha-head">{{c.lastFecha | date :'shortTime'}}</h4>
-                                <h4 *ngIf="c.shortime == false" class="fecha-head">{{c.lastFecha | date :'fullDate'}}</h4>
+                                <h4 *ngIf="c.shortime == false" class="fecha-head">{{c.lastFecha | date :'fullDate'}}</h4>  
                             </mat-card-content>
                         </mat-card>
                     </span>

@@ -47,7 +47,6 @@ export class MensajesComponent implements OnInit {
   constructor(
     private _builder: FormBuilder, 
     private Chat: ChatsService, 
-    private modal: ModalesService,
     private signalr: SignalrcustomService,
     private dataService: DataService,
     private securityServices: SecurityService
@@ -60,7 +59,6 @@ export class MensajesComponent implements OnInit {
   ngOnInit(): void {
 
     //Carga de Funciones Principales
-    this.signalr.RecieveMessage();
     this.CargarUsuario();    
     this.CargarDatos(); 
 
@@ -172,7 +170,7 @@ export class MensajesComponent implements OnInit {
           // }
 
           //enviar datos por la funcion de refrescar
-          this.modal.$refreshChats.emit(true);
+          // this.modal.$refreshChats.emit(true);
 
           //resetear textarea
           this.mensajeForm.reset();
@@ -193,7 +191,7 @@ export class MensajesComponent implements OnInit {
       // }
 
       //enviar datos por la funcion de refrescar
-      this.modal.$refreshChats.emit(true);
+      // this.modal.$refreshChats.emit(true);
 
       //resetear textarea
       this.mensajeForm.reset();
