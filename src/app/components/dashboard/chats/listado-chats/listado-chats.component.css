@@ -1,0 +1,28 @@
+.contenedor-listado{
+    box-shadow: 2px 2px 5px #999;
+    min-height: 73vh;
+}
+.btn-listado{
+    min-width: 100%;
+    background: none;
+    border: none;
+}
+.contenedor-mensajes{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.busqueda input{    
+    margin-left: 1rem;
+    width: 70%;
+    margin-right: 5px;
+}
+.chats-scrollbar{
+    min-height: 60vh;
+    max-height: 60vh;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+}
+/* .fecha-head{
+    margin-left: 8px;
+    margin-top: 2px;
+} */

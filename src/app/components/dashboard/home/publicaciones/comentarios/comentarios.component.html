@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="row">
+        <div class="">
+            <mat-card *ngFor="let c of comentarios; let i = index" class="card-comentarios bg-light">
+                <mat-card-header>
+                    <mat-card-title class="d-flex">
+                        <mat-icon>account_circle</mat-icon>
+                        <h3>{{c.nombreUsuario}}</h3>                        
+                    </mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <p>{{c.descripcion}}</p>
+                    <mat-divider inset></mat-divider>  
+                    <div class="container-buttons">
+                        <button mat-button color="primary" (click)="addLike(c.comentariosId, i)">{{c.likes}} | <mat-icon>thumb_up</mat-icon> Me gusta</button>
+                        <button mat-button color="primary" (click)="openRespuestas(i, c.comentariosId, c.activo)"><mat-icon>reply</mat-icon> Responder</button>
+                        <button mat-button disabled>{{c.fecha | date:'shortTime'}}</button>               
+                    </div>   
+                    <mat-divider inset></mat-divider>
+                </mat-card-content>
+                <mat-card-actions *ngIf="c.activo == true">
+                    <app-respuestas [comentariosId]="comentariosId"></app-respuestas>
+                </mat-card-actions>
+            </mat-card>
+        </div>        
+        <form [formGroup]="commentForm" (ngSubmit)="enviarComentario()">
+            <div class="mb-3 textComentario">    
+                <textarea class="form-control" formControlName="Descripcion" rows="2" placeholder="Escriba un Comentario..."></textarea>
+                <button class="btn-send" type="submit" [disabled]="commentForm.invalid">
+                    <span class="material-icons">
+                        send
+                        </span>
+                </button>
+            </div>
+        </form>    
+    </div>
+</div>

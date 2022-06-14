@@ -1,0 +1,5 @@
+<app-navbar *ngIf="IsAuthenticated == true"></app-navbar>
+<div class="container-scrollbar" *ngIf="IsAuthenticated == true">
+    <router-outlet></router-outlet>
+</div>
+<app-error *ngIf="IsAuthenticated == false"></app-error>

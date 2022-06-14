@@ -1,0 +1,19 @@
+.modal{
+    display: inline;
+    top: 0;
+    left: 0;
+    position: fixed;
+    background: rgba(0,0,0,0.5);
+}
+table {
+    width: 100%;
+}
+
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+
+td, th {
+    width: 20%;
+}

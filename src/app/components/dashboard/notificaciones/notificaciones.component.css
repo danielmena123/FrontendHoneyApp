@@ -1,0 +1,8 @@
+.example-card{
+    margin-top: 1.4rem;
+}
+.notificacion-scroll{
+    min-height: 91vh;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+}

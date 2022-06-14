@@ -1,0 +1,42 @@
+<div class="container" *ngIf="mostrar==true">
+    
+        <mat-card class="lista-mensajes">
+            <mat-card-header>
+                <mat-card-title class="d-flex">
+                    <mat-icon>account_circle</mat-icon>
+                    <h3>{{secondnombreUsuario}}</h3>
+                </mat-card-title>
+            </mat-card-header>       
+            <mat-divider inset></mat-divider> 
+            <mat-card-content>
+                <div class="message-container" #listaMensajes>
+                    <div *ngFor="let m of Mensajes" [ngClass]="{'messageRight': m.usuariosId == usuario.usuariosId, 'messageLeft': m.usuariosId != usuario.usuariosId}">
+                        <mat-card class="card-message">
+                            <mat-card-header>
+                                <mat-card-title class="d-flex">
+                                    <mat-icon>account_circle</mat-icon>
+                                    <h4>{{m.nombreUsuario}}</h4>
+                                </mat-card-title>
+                            </mat-card-header>
+                            <mat-card-content>
+                                <p>{{m.descripcion}}</p>
+                                <h5 *ngIf="m.shortime == true">{{m.fecha | date: 'shortTime'}}</h5>
+                                <h5 *ngIf="m.shortime == false">{{m.fecha | date: 'mediumDate'}}</h5> 
+                            </mat-card-content>
+                        </mat-card>
+                    </div>       
+                </div>   
+            </mat-card-content>
+        </mat-card>
+    
+    <form [formGroup]="mensajeForm" (ngSubmit)="enviarMensaje()">
+        <div class="mb-3 textComentario">    
+            <textarea class="form-control" formControlName="Descripcion" rows="2" placeholder="Escriba un Mensaje..."></textarea>
+            <button class="btn-send" type="submit" [disabled]="mensajeForm.invalid">
+                <span class="material-icons">
+                    send
+                    </span>
+            </button>
+        </div>
+    </form>
+</div>

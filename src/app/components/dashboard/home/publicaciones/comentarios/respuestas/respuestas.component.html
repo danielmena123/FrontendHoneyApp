@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="row">
+        <mat-card *ngFor="let r of respuestas; let i = index" class="card-respuestas bg-light">
+            <mat-card-header>
+                <mat-card-title class="d-flex">
+                    <mat-icon>account_circle</mat-icon>
+                    <h3>{{r.nombreUsuario}}</h3>
+                </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <p>{{r.descripcion}}</p>
+                <mat-divider inset></mat-divider>
+                <div class="container-buttons">
+                    <button mat-button color="primary" (click)="addLike(r.respuestasId, i)">{{r.likes}} | <mat-icon>thumb_up</mat-icon> Me gusta</button>   
+                    <button mat-button disabled>{{r.fecha | date:'shortTime'}}</button>       
+                </div>   
+                <mat-divider inset></mat-divider>
+            </mat-card-content>
+        </mat-card>
+        <form [formGroup]="respuestForm" (ngSubmit)="enviarRespuesta()">
+            <div class="mb-3 textComentario">    
+                <textarea class="form-control" formControlName="Descripcion" rows="2" placeholder="Escriba un Comentario..."></textarea>
+                <button class="btn-send" type="submit" [disabled]="respuestForm.invalid">
+                    <span class="material-icons">
+                        send
+                        </span>
+                </button>
+            </div>
+        </form>   
+    </div>
+</div>

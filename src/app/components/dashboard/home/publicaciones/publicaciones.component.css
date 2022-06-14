@@ -1,0 +1,13 @@
+.card-publicaciones{
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 2px 2px 5px #999;
+}
+.container-buttons{
+    display: flex;
+    justify-content: space-between;
+}
+.container-header{
+    display: flex;
+    justify-content: space-between;
+}

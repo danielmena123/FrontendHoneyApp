@@ -1,0 +1,77 @@
+<!-- <div class="example-container" [class.example-is-mobile]="mobileQuery.matches" *ngIf="shouldRun">
+    <mat-toolbar color="primary" class="example-toolbar">
+      <div class="col-md-6 d-flex">
+        <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+        <h1 class="example-app-name">Lemon App</h1>
+      </div>
+      <div class="col-md-6 d-flex session">
+        <h5 class="app-bienvenida">Bienvenido: {{usuario.nombreUsuario}}</h5>
+        <button class="btn btn-danger" (click)="logout()">Cerrar Session</button>
+      </div>
+    </mat-toolbar>
+  
+    <mat-sidenav-container class="example-sidenav-container"
+                           [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+      <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
+                   [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+        <mat-nav-list>
+          <a mat-list-item [routerLink]="nav.route" *ngFor="let nav of fillerNav">
+            <mat-icon class="iconos">{{nav.icon}}</mat-icon>  
+            {{nav.name}}</a>
+        </mat-nav-list>
+      </mat-sidenav>
+  
+      <mat-sidenav-content>
+        <router-outlet></router-outlet>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  </div>
+  
+  <div *ngIf="!shouldRun">Please open on Stackblitz to see result</div>
+  
+   -->
+   <!-- <div class="example-container">
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <div class="container-fluid">
+        <a class="navbar-brand text-light" [routerLink]="['/dashboard/']"> HoneyApp</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active text-light" aria-current="page" [routerLink]="['/dashboard/chats']"><i class="bi bi-house-fill"></i> Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active text-light" aria-current="page" [routerLink]="['/dashboard/chats']"><i class="bi bi-chat-fill"></i> Chats</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active text-light" aria-current="page" [routerLink]="['/dashboard/ayuda']"><i class="bi bi-info-circle"></i> Ayuda</a>
+            </li> -->
+            <!-- <li>
+              <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+              </form>      
+            </li>           -->
+          <!-- </ul> -->
+          <!-- <form class="d-flex">
+            <div class="dropdown">
+              <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-person-circle"></i>
+                {{usuario.nombreUsuario}}
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="#"><i class="bi bi-person-bounding-box"></i> Perfil</a></li>
+                <li><a class="dropdown-item" href="#"><i class="bi bi-gear-fill"></i> Ajustes</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" role="button" (click)="logout()"><i class="bi bi-door-open-fill"></i> Cerrar Session</a></li>
+              </ul>
+            </div>
+          </form>
+        </div>
+      </div>
+    </nav>
+    <div class="example-nav-container">
+      <router-outlet></router-outlet>
+    </div>    
+   </div> -->

@@ -1,0 +1,31 @@
+<div class="col-lg-12 bg-light contenedor-listado">
+    <br>
+    <div class="d-flex busqueda">
+        <input type="search" class="form-control" placeholder="Buscar un chat...">
+        <button class="btn btn-primary"><mat-icon>search </mat-icon></button>
+    </div>
+    <br>
+    <div class="container">
+        <div class="chats-scrollbar">
+            <div class="col-lg-12 contenedor-mensajes" *ngFor="let c of chats">
+                <button class="btn-listado" (click)="openMensajes(c.chatsId, c.nombreUsuario)">
+                    <span>
+                        <mat-card class="card-chat">
+                            <mat-card-header>
+                                <mat-card-title class="d-flex">
+                                    <mat-icon>account_circle</mat-icon>
+                                    <h3>{{c.nombreUsuario}}</h3>                                                  
+                            </mat-card-title>
+                            </mat-card-header>
+                            <mat-card-content>
+                                <p>{{c.mensaje}}</p>
+                                <h4 *ngIf="c.shortime == true" class="fecha-head">{{c.lastFecha | date :'shortTime'}}</h4>
+                                <h4 *ngIf="c.shortime == false" class="fecha-head">{{c.lastFecha | date :'fullDate'}}</h4>
+                            </mat-card-content>
+                        </mat-card>
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>        
+</div>

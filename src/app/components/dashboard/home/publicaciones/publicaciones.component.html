@@ -1,0 +1,24 @@
+<div class="container">    
+    <mat-card *ngFor="let p of publicaciones; let i = index" class="card-publicaciones bg-light">
+        <mat-card-header>
+            <mat-card-title class="d-flex">
+                <mat-icon>account_circle</mat-icon>
+                <h3>{{p.nombreUsuario}}</h3>
+            </mat-card-title>
+            <mat-card-subtitle><h4>{{p.fecha | date :'short'}}</h4></mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <p>{{p.descripcion}}</p>      
+            <mat-divider inset></mat-divider>  
+            <div class="container-buttons">
+                <button mat-button color="primary" (click)="addLike(p.publicacionesId, i)">{{p.likes}} | <mat-icon>thumb_up</mat-icon> Me gusta</button>
+                <button mat-button color="primary" (click)="openComentarios(i, p.publicacionesId, p.activo)"><mat-icon>comment</mat-icon> Comentar</button>
+                <button mat-button color="primary"><mat-icon>share</mat-icon> Compartir</button>                    
+            </div>   
+            <mat-divider inset></mat-divider>
+        </mat-card-content>
+        <mat-card-actions *ngIf="p.activo == true">
+            <app-comentarios [publicacionesId]="publicacionesId"></app-comentarios>
+        </mat-card-actions>
+    </mat-card>
+</div>

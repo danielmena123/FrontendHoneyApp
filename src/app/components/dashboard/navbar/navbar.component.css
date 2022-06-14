@@ -1,0 +1,16 @@
+.example-spacer {
+    flex: 1 1 auto;
+  }
+  .btn-notify{
+    margin-right: 5px;
+  }
+  .home-parent{
+    position: relative;
+  }
+  .circle-son{
+    z-index: 100;
+    width: 40%;
+    font-size: medium;
+    margin: auto;
+    position: absolute;
+  }

@@ -1,0 +1,23 @@
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <mat-card class="card-listado-chats bg-light">
+                    <mat-card-header class="d-flex">
+                        <mat-card-title>Chatea con tus amigos!</mat-card-title>
+                        <mat-card-subtitle><button mat-raised-button color="primary" (click)="openModal()"><mat-icon>add_comment</mat-icon> Nuevo</button></mat-card-subtitle>                                          
+                    </mat-card-header>
+                </mat-card>
+                <app-listado-chats></app-listado-chats>
+            </div>
+            <div class="col-lg-9">
+                <mat-card class="card-chat bg-light">
+                    <app-mensajes></app-mensajes>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="" *ngIf="modalSwitch == true">
+    <app-modal-c></app-modal-c>
+</div>

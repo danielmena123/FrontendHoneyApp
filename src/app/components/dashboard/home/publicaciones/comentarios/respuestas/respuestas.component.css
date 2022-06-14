@@ -1,0 +1,30 @@
+.textComentario textarea{
+    box-shadow: 2px 2px 5px #999;
+    max-width: 100% !important; 
+}
+.btn-send {
+    position: absolute;
+    z-index: 100;
+    right: 10px;
+    top: 5px;
+    background: none;
+    border: none;
+    color: grey;
+    cursor: pointer;
+    transition: color .6s;
+}
+.btn-send:hover {
+    color: cornflowerblue;
+}
+.textComentario{
+    display: flex;
+    width: 100%;
+    position: relative;
+    box-shadow: 2px 2px 5px #999;
+}
+.card-respuestas{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 2px 2px 5px #999;
+    max-width: 100%;
+}

@@ -1,0 +1,7 @@
+.card-titulo{
+    margin-top: 1.5rem;
+    box-shadow: 2px 2px 5px #999;
+}
+.mat-card-header button{
+    box-shadow: 2px 2px 5px #999;
+}
