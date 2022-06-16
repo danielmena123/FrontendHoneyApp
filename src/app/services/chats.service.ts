@@ -11,5 +11,7 @@ export class ChatsService {
   $newChat = new EventEmitter<any>();
   $changeChat = new EventEmitter<any>();
   $changeChatNotify = new EventEmitter<any>();
+  $refrescarChats = new EventEmitter<any>();
+  $regrescarRooms = new EventEmitter<any>();
 
 }

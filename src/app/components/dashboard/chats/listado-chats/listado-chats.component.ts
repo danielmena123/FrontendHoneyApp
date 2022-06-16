@@ -22,7 +22,7 @@ export class ListadoChatsComponent implements OnInit {
   chats!: Chats[];
 
   constructor(
-    private service: ChatsService, 
+    private chatService: ChatsService, 
     private signalr: SignalrcustomService,
     private dataService: DataService,
     private securityServices: SecurityService
@@ -35,13 +35,13 @@ export class ListadoChatsComponent implements OnInit {
     this.CargarDatos();
 
     this.signalr.emitirMensaje.subscribe(res => {
-      if(res != null){
-        this.chats.forEach(item => {
-          if(item.chatsId = res.chatsId){
-            // item.mensaje = res.descripcion;
-            this.ngOnInit();
-          }
-        })
+      if(res != null && res.usuariosId != this.usuario.usuariosId){
+        this.CargarDatos();
+      }
+    });
+    this.chatService.$refrescarChats.subscribe(res => {
+      if(res){
+        this.CargarDatos();
       }
     })
   }
@@ -81,8 +81,13 @@ export class ListadoChatsComponent implements OnInit {
       secondUserName: secondUserName
     }
 
-    this.service.$changeChat.emit(data);    
-    this.service.$changeChatNotify.emit(false);
+    let anything: any;
+    const url = `${this.apiURL}/Mensaje/${ChatId}/${this.usuario.usuariosId}`;
+    this.dataService.Put<any>(url, anything).subscribe(res => {
+      this.chatService.$changeChat.emit(data);    
+      this.chatService.$changeChatNotify.emit(false);
+      this.CargarDatos();
+    });    
   }
 
 }

@@ -11,19 +11,18 @@
                 <button class="btn-listado" (click)="openMensajes(c.chatsId, c.nombreUsuario)">
                     <span>
                         <mat-card class="card-chat">
-                            <mat-card-header>
-                                <mat-card-title class="d-flex">
-                                    <mat-icon>account_circle</mat-icon>
-                                    <h3>{{c.nombreUsuario}}</h3>                                                  
-                            </mat-card-title>
-                            </mat-card-header>
                             <mat-card-content>
                                 <div class="d-flex content-chat">
-                                    <p>{{c.mensaje}}</p><p *ngIf="c.noLeidos > 0"><strong>{{c.noLeidos}}</strong></p>
+                                    <div class="d-flex">
+                                        <mat-icon>account_circle</mat-icon>
+                                        <h4>{{c.nombreUsuario}}</h4>  
+                                    </div>
+                                    <h5 *ngIf="c.shortime == true" class="fecha-head mt-1">{{c.lastFecha | date :'shortTime'}}</h5>
+                                    <h5 *ngIf="c.shortime == false" class="fecha-head mt-1">{{c.lastFecha | date :'mediumDate'}}</h5>
                                 </div>
-                                <hr>
-                                <h4 *ngIf="c.shortime == true" class="fecha-head">{{c.lastFecha | date :'shortTime'}}</h4>
-                                <h4 *ngIf="c.shortime == false" class="fecha-head">{{c.lastFecha | date :'fullDate'}}</h4>  
+                                <div class="d-flex content-chat">
+                                    <p>{{c.mensaje | slice:0:25}}{{c.mensaje.length > 25 ? '...': ''}}</p><p *ngIf="c.noLeidos > 0"><strong>{{c.noLeidos}}</strong></p>
+                                </div>
                             </mat-card-content>
                         </mat-card>
                     </span>

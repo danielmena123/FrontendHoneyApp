@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
       this.registerForm = this._builder.group({
         Nombres : ['', Validators.required],
         Apellidos: ['', Validators.required],
-        NombreUsuario: ['', Validators.required],
+        NombreUsuario: ['',[ Validators.required, Validators.maxLength(12)]],
         CorreoElectronico: ['', Validators.compose([Validators.email, Validators.required])],
         Contraseña: ['', Validators.required]
       })

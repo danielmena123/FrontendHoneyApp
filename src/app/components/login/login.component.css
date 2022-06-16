@@ -1,8 +1,8 @@
-body {
+.login {
     display: flex;
     align-items: center;
+    height: 100%;
     justify-content: center;
-    background-color: rgb(50, 74, 139);
 }
 .example-card {
     max-width: 400px;    

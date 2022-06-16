@@ -46,7 +46,7 @@ export class MensajesComponent implements OnInit {
 
   constructor(
     private _builder: FormBuilder, 
-    private Chat: ChatsService, 
+    private chatService: ChatsService, 
     private signalr: SignalrcustomService,
     private dataService: DataService,
     private securityServices: SecurityService
@@ -63,7 +63,7 @@ export class MensajesComponent implements OnInit {
     this.CargarDatos(); 
 
     //Subscricion a la funcion del modal
-    this.Chat.$newChat.subscribe(data => {
+    this.chatService.$newChat.subscribe(data => {
       if(data != null){
         this.chatId = 0;
         this.secondusurioId = data.id;
@@ -75,7 +75,7 @@ export class MensajesComponent implements OnInit {
     });
 
     //Subscripcion a la funcion del listado
-    this.Chat.$changeChat.subscribe(data => {
+    this.chatService.$changeChat.subscribe(data => {
       if(data != null){
         this.chatId = data.ChatId;
         this.secondnombreUsuario = data.secondUserName;
@@ -87,11 +87,13 @@ export class MensajesComponent implements OnInit {
 
     //Subscripcion a respuesta de Signalr
     this.signalr.emitirMensaje.subscribe((data) => {
-      this.chatId = data.chatsId;
-      data.shortime = true;
-      this.newChat = false;
-      this.CargarDatos();
-      this.Mensajes.push(data);
+      if (data.usuariosId != this.usuario.usuariosId) {
+        this.chatId = data.chatsId;
+        data.shortime = true;
+        this.newChat = false;
+        this.CargarDatos();
+        this.Mensajes.push(data);
+      }      
     });      
   }
 
@@ -155,25 +157,25 @@ export class MensajesComponent implements OnInit {
         this.mensaje.chatsId = this.chats.chatsId;
 
         //Agregar al grupo del chat
-        var group = "Chat" + this.chats.chatsId;
-        this.signalr.AddToGroup(group);
+        // var group = "Chat" + this.chats.chatsId;
+        // this.signalr.AddToGroup(group);
 
         //Guardar msj modificado
         const url_msg = `${this.apiURL}/Mensaje`;
-        this.dataService.Post<Mensajes_C>(url_msg, this.mensaje).subscribe( res => {
+        this.dataService.Post<Mensajes>(url_msg, this.mensaje).subscribe( res => {
+          if(res.body != null){
 
-          //construir chat a listar
-          // const data =  {
-          //   switch: true,
-          //   nombre: res.body!.nombreUsuario,
-          //   id: this.mensaje.chatsId
-          // }
+            //agregar nuevo mensaje al listado
+            res.body.shortime = true;
+            this.Mensajes.push(res.body);
 
-          //enviar datos por la funcion de refrescar
-          // this.modal.$refreshChats.emit(true);
-
-          //resetear textarea
-          this.mensajeForm.reset();
+            //refrescar el listado de chat y las salas a los ususarios
+            this.chatService.$refrescarChats.emit(true);
+            this.chatService.$regrescarRooms.emit(true);
+            
+             //resetear textarea
+            this.mensajeForm.reset();
+          }
         }, err => {
           console.log(err);
         })
@@ -181,24 +183,36 @@ export class MensajesComponent implements OnInit {
    }
    else{
     const url_msg = `${this.apiURL}/Mensaje`;
-    this.dataService.Post<Mensajes_C>(url_msg, this.mensaje).subscribe( res => {
+    this.dataService.Post<Mensajes>(url_msg, this.mensaje).subscribe( res => {
+      if(res.body){
+        const newMessage: Mensajes = res.body
+        let anything: any;
+        const url_see1_msg = `${this.apiURL}/Mensaje/${res.body.chatsId}/${this.usuario.usuariosId}`;
+        this.dataService.Put<any>(url_see1_msg, anything).subscribe(res => {
+          //agregar nuevo mensaje al listado
+          newMessage.shortime = true;        
+          this.Mensajes.push(newMessage);
 
-      //construir chat a listar
-      // const data = {
-      //   switch: true,
-      //   nombre: this.nombreUsuario,
-      //   id: this.mensaje.chatsId
-      // }
+          //refrescar listado de chats
+          this.chatService.$refrescarChats.emit(true);
 
-      //enviar datos por la funcion de refrescar
-      // this.modal.$refreshChats.emit(true);
-
-      //resetear textarea
-      this.mensajeForm.reset();
+          //resetear textarea
+          this.mensajeForm.reset();
+        })
+        
+      }
     }, err => {
       console.log(err);
     })
    }
+  }
+
+  Archivar(){
+    this.mostrar = false;
+  }
+
+  Eliminar(){
+    this.mostrar = false;
   }
 
 }

@@ -22,6 +22,9 @@
     overflow-y: scroll;
     scrollbar-width: thin;
 }
+.content-fecha{
+    justify-content: end;
+}
 .content-chat{
     justify-content: space-between;
 }

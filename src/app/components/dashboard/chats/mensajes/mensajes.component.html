@@ -1,11 +1,24 @@
 <div class="container" *ngIf="mostrar==true">
     
         <mat-card class="lista-mensajes">
-            <mat-card-header>
-                <mat-card-title class="d-flex">
+            <mat-card-header class="d-flex header-chat">
+                <mat-card-title class="d-flex mt-2">
                     <mat-icon>account_circle</mat-icon>
                     <h3>{{secondnombreUsuario}}</h3>
                 </mat-card-title>
+                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                    <mat-icon>more_vert</mat-icon>
+                  </button>
+                  <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="Archivar()">
+                      <mat-icon>folder_delete</mat-icon>
+                      <span>Archivar</span>
+                    </button>
+                    <button mat-menu-item (click)="Eliminar()">
+                      <mat-icon>delete_sweep</mat-icon>
+                      <span>Eliminar</span>
+                    </button>
+                  </mat-menu>                 
             </mat-card-header>       
             <mat-divider inset></mat-divider> 
             <mat-card-content>
@@ -31,7 +44,7 @@
     
     <form [formGroup]="mensajeForm" (ngSubmit)="enviarMensaje()">
         <div class="mb-3 textComentario">    
-            <textarea class="form-control" formControlName="Descripcion" rows="2" placeholder="Escriba un Mensaje..."></textarea>
+            <textarea class="form-control" formControlName="Descripcion" rows="1" placeholder="Escriba un Mensaje..."></textarea>
             <button class="btn-send" type="submit" [disabled]="mensajeForm.invalid">
                 <span class="material-icons">
                     send

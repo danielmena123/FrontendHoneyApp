@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { Mensajes } from '../models/mensajes';
 import { SecurityService } from './security.service';
 import { Chats } from '../models/chats';
+import { ChatsService } from './chats.service';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,10 @@ export class SignalrcustomService {
   public hubConnection : signalR.HubConnection
   private connectionIsEstablished = false;
 
-  constructor(private securityService: SecurityService) {
+  constructor(
+    private chatService: ChatsService,
+    private securityService: SecurityService
+    ) {
     this.startConnection();    
    }
     public startConnection = () => {
@@ -41,6 +45,7 @@ export class SignalrcustomService {
     this.hubConnection.on('sendMessage', (mensaje) => {
       let message: Mensajes = JSON.parse(mensaje);
       this.emitirMensaje.emit(message);
+      this.chatService.$refrescarChats.emit(true);
     })
   }
   

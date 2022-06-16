@@ -15,6 +15,7 @@ import {MatSelectModule} from '@angular/material/select';
 
 
 //Angular Material
+import {MatMenuModule} from '@angular/material/menu';
 import { MatSliderModule } from '@angular/material/slider';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input'; 
@@ -50,6 +51,7 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatSidenavModule,
     MatListModule,
     MatTabsModule,
+    MatMenuModule,
   ],
   exports:[
     CommonModule,
@@ -73,6 +75,7 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatSidenavModule,
     MatListModule,
     MatTabsModule,
+    MatMenuModule,
   ]
 })
 export class SharedModule { }

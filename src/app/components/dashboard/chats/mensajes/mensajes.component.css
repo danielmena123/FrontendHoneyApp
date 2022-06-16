@@ -30,7 +30,7 @@
     scrollbar-width: thin;
 }
 .lista-mensajes{
-    min-height: 70vh;
+    min-height: 72vh;
     margin-bottom: 1rem;
     margin-top: 1rem;
     box-shadow: 2px 2px 5px #999;
@@ -52,4 +52,7 @@
     margin-left: 1rem;
     width: 60%;
     box-shadow: 2px 2px 5px #999;
+}
+.header-chat{
+    justify-content: space-between;
 }
