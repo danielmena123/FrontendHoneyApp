@@ -1,11 +1,11 @@
 <mat-toolbar>
     <span>HoneyApp</span>
     <span class="example-spacer"></span>
-    <button mat-button [routerLink]="['/dashboard/']" (click)="notifyPubliFalse()"><mat-icon *ngIf="newNotify == true" class="circle-son text-danger">fiber_manual_record</mat-icon><mat-icon class="home-parent">home</mat-icon> Home</button>
-    <button mat-button [routerLink]="['/dashboard/chats']"><mat-icon *ngIf="newNotifyMessag == true" class="circle-son text-danger">fiber_manual_record</mat-icon><mat-icon class="home-parent">chat</mat-icon> Chats</button>
+    <button mat-button [routerLink]="['/dashboard/']"><mat-icon *ngIf="newNotify == true" class="circle-son text-danger">circle</mat-icon><mat-icon class="home-parent">home</mat-icon> Home</button>
+    <button mat-button [routerLink]="['/dashboard/chats']"><label class="label-son text-light" *ngIf="messageRead > 0">{{messageRead}}</label><mat-icon *ngIf="messageRead > 0" class="circle-son text-danger">fiber_manual_record</mat-icon><mat-icon class="home-parent">chat</mat-icon> Chats</button>
     <button mat-button [routerLink]="['/dashboard/ayuda']"><mat-icon>info</mat-icon> Ayuda</button>
     <span class="example-spacer"></span>
-    <form class="d-flex">      
+    <form class="d-flex">           
         <button class="btn-notify" mat-mini-fab color="primary" *ngIf="newNotify == false"><mat-icon>notifications</mat-icon></button>
         <button class="btn-notify" mat-mini-fab color="accent" *ngIf="newNotify == true"><mat-icon>notifications_active</mat-icon></button>
         <div class="dropdown">

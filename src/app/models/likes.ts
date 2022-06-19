@@ -1,8 +1,8 @@
 export interface likes{
-    likes:number;
+    numlikes:number;
 }
 
 export interface likes_C{
-    modeloId: number,
-    usuarioId: number
+    modelosId: number,
+    usuariosId: number
 }

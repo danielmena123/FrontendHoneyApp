@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { UsuarioAccess } from '../models/access';
 import { StorageService } from './storage.service';
 
 @Injectable({
@@ -24,21 +23,19 @@ export class SecurityService {
   }
 
   public GetUser(): any {
-    return this.storeService.retrieve('usuario');
+    return this.storeService.retieveUser('authData');
   }
 
   public ResetAuthData(){
     this.storeService.store('authData', '');
     this.IsAuthorized = false;
     this.storeService.store('IsAuthorized', false);
-    this.storeService.store('usuario', '');
   }
 
-  public SetAuthData(token: any, usuario: any){      
+  public SetAuthData(token: any){      
     this.storeService.store('authData', token);
     this.IsAuthorized = true;
-    this.storeService.store('IsAuthorized', true);
-    this.storeService.store('usuario', usuario);
+    this.storeService.store('IsAuthorized', true);   
 
     this.authSource.next(true);
   }

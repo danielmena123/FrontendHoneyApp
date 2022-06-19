@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
 import { SharedModule } from '../shared/shared/shared.module';
-import { SidenavComponent } from './sidenav/sidenav.component';
 import { HomeComponent } from './home/home.component';
 import { ChatsComponent } from './chats/chats.component';
 import { AyudaComponent } from './ayuda/ayuda.component';
@@ -23,7 +22,6 @@ import { NotificacionesComponent } from './notificaciones/notificaciones.compone
 @NgModule({
   declarations: [
     DashboardComponent,
-    SidenavComponent,
     HomeComponent,
     ChatsComponent,
     AyudaComponent,

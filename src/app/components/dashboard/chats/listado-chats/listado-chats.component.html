@@ -21,7 +21,7 @@
                                     <h5 *ngIf="c.shortime == false" class="fecha-head mt-1">{{c.lastFecha | date :'mediumDate'}}</h5>
                                 </div>
                                 <div class="d-flex content-chat">
-                                    <p>{{c.mensaje | slice:0:25}}{{c.mensaje.length > 25 ? '...': ''}}</p><p *ngIf="c.noLeidos > 0"><strong>{{c.noLeidos}}</strong></p>
+                                    <p>{{c.mensaje | slice:0:23}}{{c.mensaje.length > 23 ? '...': ''}}</p><p *ngIf="c.noLeidos > 0"><strong>{{c.noLeidos}}</strong></p>
                                 </div>
                             </mat-card-content>
                         </mat-card>

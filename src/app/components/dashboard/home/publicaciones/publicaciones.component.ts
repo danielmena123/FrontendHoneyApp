@@ -39,11 +39,11 @@ export class PublicacionesComponent implements OnInit, OnDestroy {
       if(data){
         this.ngOnInit();
       }
-    });    
+    });
   }
 
   CargarDatos(){
-    const url = `${this.apiURL}/Publicacion`;    
+    const url = `${this.apiURL}/Publicaciones`;    
     this.subRef$ = this.dataService.get<Publicaciones[]>(url).subscribe(res => {
       this.publicaciones = res.body!;
     })
@@ -71,14 +71,14 @@ export class PublicacionesComponent implements OnInit, OnDestroy {
 
   addLike(publicacionId: number, index: number){
     this.like = {
-      modeloId: publicacionId,
-      usuarioId: this.usuario.usuariosId
+      modelosId: publicacionId,
+      usuariosId: this.usuario.usuariosId
     }
 
-    const url = `${this.apiURL}/Like/Publicacion`;
+    const url = `${this.apiURL}/Publicaciones/Likes`;
     this.dataService.Post<likes>(url, this.like).subscribe(res => {
       if(res.body != null){
-        this.publicaciones[index].likes = res.body.likes
+        this.publicaciones[index].likes = res.body.numlikes
       }
     },err => {
         console.log(err);

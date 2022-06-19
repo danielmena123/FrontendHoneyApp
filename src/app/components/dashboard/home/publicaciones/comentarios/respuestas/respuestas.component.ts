@@ -1,11 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { UsuarioAccess } from 'src/app/models/access';
 import { likes, likes_C } from 'src/app/models/likes';
 import { Respuestas, Respuesta_C } from 'src/app/models/Respuestas';
 import { DataService } from 'src/app/services/data.service';
-import { RespuestasService } from 'src/app/services/respuestas.service';
 import { SecurityService } from 'src/app/services/security.service';
 import { environment } from 'src/environments/environment';
 
@@ -42,7 +40,7 @@ export class RespuestasComponent implements OnInit {
   }
 
   CargarDatos(){
-    const url = `${this.apiURL}/Respuesta/${this.comentariosId}`
+    const url = `${this.apiURL}/Respuestas/${this.comentariosId}`
     this.dataService.get<Respuestas[]>(url).subscribe( res => {
       this.respuestas = res.body!;
     })
@@ -60,9 +58,9 @@ export class RespuestasComponent implements OnInit {
       usuariosId: this.usuario.usuariosId
     }
 
-    const url = `${this.apiURL}/Respuesta/`;
+    const url = `${this.apiURL}/Respuestas/`;
     this.dataService.Post<Respuesta_C>(url, this.respuesta).subscribe( res => {
-      this.ngOnInit();
+      this.CargarDatos();
       this.respuestForm.reset();
     },
     err => {
@@ -72,14 +70,14 @@ export class RespuestasComponent implements OnInit {
 
   addLike(respuestaId: number, index: number){
     this.like = {
-      modeloId: respuestaId,
-      usuarioId: this.usuario.usuariosId
+      modelosId: respuestaId,
+      usuariosId: this.usuario.usuariosId
     }
 
-    const url = `${this.apiURL}/Like/Respuesta`;
+    const url = `${this.apiURL}/Respuestas/Likes`;
     this.dataService.Post<likes>(url, this.like).subscribe(res => {
       if(res.body != null){
-        this.respuestas[index].likes = res.body.likes
+        this.respuestas[index].likes = res.body.numlikes
       }
     },err => {
         console.log(err);

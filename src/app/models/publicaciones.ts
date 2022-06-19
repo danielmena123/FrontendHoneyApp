@@ -11,5 +11,5 @@ export interface Publicaciones{
 
 export interface Publicacion_C{
     descripcion: string,
-    usuarioId: number
+    usuariosId: number
 }

@@ -10,7 +10,13 @@
   .circle-son{
     z-index: 100;
     width: 40%;
-    font-size: medium;
+    bottom: 16px;
     margin: auto;
+    position: absolute;
+  }
+  .label-son{
+    z-index: 1000;
+    bottom: 10px;
+    width: 40%;
     position: absolute;
   }

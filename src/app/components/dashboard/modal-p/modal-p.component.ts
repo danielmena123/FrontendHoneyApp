@@ -50,11 +50,11 @@ export class ModalPComponent implements OnInit {
     //Crear Publicacion
     this.publicacion = {
       descripcion: this.publicForm.value.Descripcion,
-      usuarioId: this.usuario.usuariosId
+      usuariosId: this.usuario.usuariosId
     }
 
     this.signalr.NewPublicacion();
-    const url = `${this.apiURL}/Publicacion`;
+    const url = `${this.apiURL}/Publicaciones`;
     this.dataService.Post<Publicacion_C>(url, this.publicacion).subscribe(res => {
       if(res != null){
         this.modal.$refres.emit(true);

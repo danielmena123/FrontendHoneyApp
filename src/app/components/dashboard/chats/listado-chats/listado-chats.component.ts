@@ -3,7 +3,7 @@ import { UsuarioAccess } from 'src/app/models/access';
 import { Chats } from 'src/app/models/chats';
 import { ChatsService } from 'src/app/services/chats.service';
 import { DataService } from 'src/app/services/data.service';
-import { ModalesService } from 'src/app/services/modales.service';
+import { NotificacionesService } from 'src/app/services/notificaciones.service';
 import { SecurityService } from 'src/app/services/security.service';
 import { SignalrcustomService } from 'src/app/services/signalrcustom.service';
 import { environment } from 'src/environments/environment';
@@ -23,6 +23,7 @@ export class ListadoChatsComponent implements OnInit {
 
   constructor(
     private chatService: ChatsService, 
+    private notificacionesService: NotificacionesService,
     private signalr: SignalrcustomService,
     private dataService: DataService,
     private securityServices: SecurityService
@@ -43,11 +44,11 @@ export class ListadoChatsComponent implements OnInit {
       if(res){
         this.CargarDatos();
       }
-    })
+    });
   }
 
   CargarDatos(){
-    const url = `${this.apiURL}/Chat/${this.usuario.usuariosId}`;
+    const url = `${this.apiURL}/Chats/${this.usuario.usuariosId}`;
     this.dataService.get<Chats[]>(url).subscribe( res => {
       this.chats = res.body!;
       this.chats.forEach(element => {
@@ -71,10 +72,6 @@ export class ListadoChatsComponent implements OnInit {
   //Funcion Abrir Componente Mensaje
   openMensajes(ChatId: number, secondUserName: string){    
 
-    //Agregar a grupo signalr
-    var group = "Chat" + ChatId;
-    this.signalr.AddToGroup(group);
-
     //Construir data a enviar
     const data = {
       ChatId: ChatId,
@@ -82,10 +79,10 @@ export class ListadoChatsComponent implements OnInit {
     }
 
     let anything: any;
-    const url = `${this.apiURL}/Mensaje/${ChatId}/${this.usuario.usuariosId}`;
+    const url = `${this.apiURL}/Mensajes/${ChatId}/${this.usuario.usuariosId}`;
     this.dataService.Put<any>(url, anything).subscribe(res => {
       this.chatService.$changeChat.emit(data);    
-      this.chatService.$changeChatNotify.emit(false);
+      this.notificacionesService.$refrescarMensajes.emit(true);
       this.CargarDatos();
     });    
   }

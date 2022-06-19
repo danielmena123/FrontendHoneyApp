@@ -16,3 +16,15 @@ export interface Mensajes_C{
     usuariosId: number,
     nombreUsuario: string
 }
+
+export interface Mensajes_Signalr{
+    ChatsId: number,
+    Titulo: string,
+    MensajesId: number,
+    Descripcion: string,
+    Fecha: Date,
+    Estado: number,
+    NombreUsuario: string,
+    UsuariosId: number,
+    shortime: boolean
+}

@@ -45,7 +45,7 @@ export class SignalrcustomService {
     this.hubConnection.on('sendMessage', (mensaje) => {
       let message: Mensajes = JSON.parse(mensaje);
       this.emitirMensaje.emit(message);
-      this.chatService.$refrescarChats.emit(true);
+      this.chatService.$refrescarChats.emit(true);      
     })
   }
   
@@ -57,8 +57,17 @@ export class SignalrcustomService {
     this.hubConnection.invoke("NewPublicacion");
   }
 
+  Rooms(){
+    this.hubConnection.invoke("Rooms");
+  }
+
+  RecieveNotificacion(): void {
+    this.hubConnection.on('RefreshRooms', (res) => {
+      if(res == true){
+        this.chatService.$refrescarRooms.emit(true);
+        this.chatService.$refrescarChats.emit(true);
+      }
+    })
+  }
+
 }
-// this.hubConnection.on('sendChat', (mensaje) => {
-//   let chat: Chats = JSON.parse(mensaje);
-//   this.emitirChat.emit(chat);
-// });

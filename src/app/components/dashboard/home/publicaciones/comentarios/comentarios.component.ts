@@ -50,7 +50,7 @@ export class ComentariosComponent implements OnInit {
 
   CargarDatos(){
 
-    const url = `${this.apiURL}/Comentario/${this.publicacionesId}`;
+    const url = `${this.apiURL}/Comentarios/${this.publicacionesId}`;
     this.dataService.get<Comentarios[]>(url).subscribe(res => {
       this.comentarios = res.body!;
     })
@@ -63,9 +63,9 @@ export class ComentariosComponent implements OnInit {
       usuariosId: this.usuario.usuariosId
     }
 
-    const url = `${this.apiURL}/Comentario/`;
+    const url = `${this.apiURL}/Comentarios/`;
     this.dataService.Post<Comentario_C>(url, this.comentario).subscribe(res => {
-      this.ngOnInit();
+      this.CargarDatos();
       this.commentForm.reset();
     },
     err => {
@@ -90,14 +90,14 @@ export class ComentariosComponent implements OnInit {
 
   addLike(comentarioId: number, index: number){
     this.like = {
-      modeloId: comentarioId,
-      usuarioId: this.usuario.usuariosId
+      modelosId: comentarioId,
+      usuariosId: this.usuario.usuariosId
     }
 
-    const url = `${this.apiURL}/Like/Comentario`;
+    const url = `${this.apiURL}/Comentarios/Likes`;
     this.dataService.Post<likes>(url, this.like).subscribe(res => {
       if(res.body != null){
-        this.comentarios[index].likes = res.body.likes
+        this.comentarios[index].likes = res.body.numlikes
       }
     },err => {
         console.log(err);

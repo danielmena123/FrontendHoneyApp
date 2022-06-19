@@ -6,6 +6,7 @@ import { Mensajes, Mensajes_C } from 'src/app/models/mensajes';
 import { ChatsService } from 'src/app/services/chats.service';
 import { DataService } from 'src/app/services/data.service';
 import { ModalesService } from 'src/app/services/modales.service';
+import { NotificacionesService } from 'src/app/services/notificaciones.service';
 import { SecurityService } from 'src/app/services/security.service';
 import { SignalrcustomService } from 'src/app/services/signalrcustom.service';
 import { environment } from 'src/environments/environment';
@@ -48,6 +49,7 @@ export class MensajesComponent implements OnInit {
     private _builder: FormBuilder, 
     private chatService: ChatsService, 
     private signalr: SignalrcustomService,
+    private notificacionesService: NotificacionesService,
     private dataService: DataService,
     private securityServices: SecurityService
     ) { 
@@ -83,7 +85,7 @@ export class MensajesComponent implements OnInit {
         this.newChat = false;
         this.CargarDatos();
       }
-    })
+    });
 
     //Subscripcion a respuesta de Signalr
     this.signalr.emitirMensaje.subscribe((data) => {
@@ -93,6 +95,8 @@ export class MensajesComponent implements OnInit {
         this.newChat = false;
         this.CargarDatos();
         this.Mensajes.push(data);
+        this.signalr.Rooms();
+        this.notificacionesService.$refrescarMensajes.emit(true);        
       }      
     });      
   }
@@ -108,7 +112,7 @@ export class MensajesComponent implements OnInit {
 
   //Cargar Mensajes
   CargarDatos(){
-    const url = `${this.apiURL}/Mensaje/${this.chatId}`;
+    const url = `${this.apiURL}/Mensajes/${this.chatId}`;
     this.dataService.get<Mensajes[]>(url).subscribe( res => {
       this.Mensajes = res.body!;
       this.Mensajes.forEach(element => {
@@ -144,24 +148,27 @@ export class MensajesComponent implements OnInit {
       //Construir Chat_Detalle
       this.chatDetalle = {
         titulo: "",
-        usuarioPrimario: this.usuario.usuariosId,
-        usuarioSecundario: this.secondusurioId,
+        usuarioPrimarioId: this.usuario.usuariosId,
+        usuarioSecundarioId: this.secondusurioId,
         nombreUsuario: this.secondnombreUsuario
       }
 
       //Agrego el nuevo Chat
-      const url_dt = `${this.apiURL}/Chat`;
+      const url_dt = `${this.apiURL}/Chats`;
       this.dataService.Post<Chats>(url_dt, this.chatDetalle).subscribe(res => {
         //Agregar Id del Chat Ingresado
         this.chats = res.body!; 
         this.mensaje.chatsId = this.chats.chatsId;
 
+        //Agregar el chat a la variable global
+        this.chatId = this.chats.chatsId
+
         //Agregar al grupo del chat
-        // var group = "Chat" + this.chats.chatsId;
-        // this.signalr.AddToGroup(group);
+        var group = "Chat" + this.chats.chatsId;
+        this.signalr.AddToGroup(group);
 
         //Guardar msj modificado
-        const url_msg = `${this.apiURL}/Mensaje`;
+        const url_msg = `${this.apiURL}/Mensajes`;
         this.dataService.Post<Mensajes>(url_msg, this.mensaje).subscribe( res => {
           if(res.body != null){
 
@@ -169,12 +176,15 @@ export class MensajesComponent implements OnInit {
             res.body.shortime = true;
             this.Mensajes.push(res.body);
 
-            //refrescar el listado de chat y las salas a los ususarios
-            this.chatService.$refrescarChats.emit(true);
-            this.chatService.$regrescarRooms.emit(true);
+            //refrescar el listado de chat y las salas al ususario principal
+            this.chatService.$refrescarChats.emit(true);            
+
+            //refrescar las salas de los demas
+            this.signalr.Rooms();
             
              //resetear textarea
             this.mensajeForm.reset();
+            this.newChat = false;
           }
         }, err => {
           console.log(err);
@@ -182,12 +192,12 @@ export class MensajesComponent implements OnInit {
       })
    }
    else{
-    const url_msg = `${this.apiURL}/Mensaje`;
+    const url_msg = `${this.apiURL}/Mensajes`;
     this.dataService.Post<Mensajes>(url_msg, this.mensaje).subscribe( res => {
       if(res.body){
         const newMessage: Mensajes = res.body
         let anything: any;
-        const url_see1_msg = `${this.apiURL}/Mensaje/${res.body.chatsId}/${this.usuario.usuariosId}`;
+        const url_see1_msg = `${this.apiURL}/Mensajes/${res.body.chatsId}/${this.usuario.usuariosId}`;
         this.dataService.Put<any>(url_see1_msg, anything).subscribe(res => {
           //agregar nuevo mensaje al listado
           newMessage.shortime = true;        
@@ -195,7 +205,8 @@ export class MensajesComponent implements OnInit {
 
           //refrescar listado de chats
           this.chatService.$refrescarChats.emit(true);
-
+          // this.signalr.Rooms();
+          // this.notificacionesService.$refrescarMensajes.emit(true);
           //resetear textarea
           this.mensajeForm.reset();
         })

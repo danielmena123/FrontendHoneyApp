@@ -4,8 +4,8 @@ export interface VerfifyChat{
 
 export interface Chat_Detalle_C{
     titulo: string,
-    usuarioPrimario: number,
-    usuarioSecundario: number,
+    usuarioPrimarioId: number,
+    usuarioSecundarioId: number,
     nombreUsuario: string
 }
 

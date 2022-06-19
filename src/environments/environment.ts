@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiURL: 'http://honey-app.somee.com/api'
+  apiURL: 'https://localhost:5001/api'
 };
 
 /*

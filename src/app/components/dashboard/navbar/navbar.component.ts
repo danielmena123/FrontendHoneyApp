@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UsuarioAccess } from 'src/app/models/access';
-import { Salas } from 'src/app/models/chats';
+import { Chats, Salas } from 'src/app/models/chats';
+import { Notificaciones } from 'src/app/models/Notificaciones';
 import { ChatsService } from 'src/app/services/chats.service';
 import { DataService } from 'src/app/services/data.service';
+import { NotificacionesService } from 'src/app/services/notificaciones.service';
 import { PublicacionesService } from 'src/app/services/publicaciones.service';
 import { SecurityService } from 'src/app/services/security.service';
 import { SignalrcustomService } from 'src/app/services/signalrcustom.service';
@@ -24,21 +26,26 @@ export class NavbarComponent implements OnInit {
   newNotify: boolean = false;
   //Variable de notificaciones personalizadas
   newNotifyPer: boolean = false;
-  newNotifyMessag: boolean = false;
+
+  //notificacion numero  de mensajes
+  messageRead: number;
 
   constructor(
     private securityServices: SecurityService, 
     private router: Router,
     private signalr: SignalrcustomService,
     private chatService: ChatsService,
+    private notificacionesService: NotificacionesService,
     private dataservice: DataService,
     private publicacionesService: PublicacionesService
     ) {
      }
 
   ngOnInit(): void {    
+    this.signalr.RecieveNotificacion();
     this.signalr.RecieveMessage();
     this.CargarUsuario();
+    this.CargarNotifiaciones();
     this.signalr.notifyNewPub.subscribe(res => {
       if(res == true){
         this.newNotify = true;
@@ -46,19 +53,20 @@ export class NavbarComponent implements OnInit {
     });
     this.signalr.connectionEstablished.subscribe(res => {
       if(res == true){
-        this.CargarRooms();        
+        this.CargarRooms();   
       }
     });    
-    this.signalr.emitirMensaje.subscribe(res => {
-      if(res != null && res.usuariosId != this.usuario.usuariosId){
-        this.newNotifyMessag = true;
+    this.notificacionesService.$refrescarMensajes.subscribe(res => {
+      if(res == true){
+        this.CargarNotifiaciones();
+      }
+    });    
+    this.chatService.$refrescarRooms.subscribe(res => {
+      if(res == true){
+        this.CargarRooms();
+        this.CargarNotifiaciones();
       }
     });
-    this.chatService.$changeChatNotify.subscribe(res => {
-      if(res == false){
-        this.newNotifyMessag = false;
-      }
-    })
   }
 
   //Cargar Usuario
@@ -68,7 +76,7 @@ export class NavbarComponent implements OnInit {
   }
 
   CargarRooms(){
-    const url = `${this.apiURL}/Salas/${this.usuario.usuariosId}`;
+    const url = `${this.apiURL}/Chats/Salas/${this.usuario.usuariosId}`;
     this.dataservice.get<Salas[]>(url).subscribe(res => {
       res.body!.forEach(item => {
         this.signalr.hubConnection.invoke("AddToGroup", item.rooms);
@@ -76,14 +84,16 @@ export class NavbarComponent implements OnInit {
     })
   }
 
+  CargarNotifiaciones(){
+    const url = `${this.apiURL}/Notificaciones/Mensajes/${this.usuario.usuariosId}`
+    this.dataservice.get<Notificaciones>(url).subscribe(res => {
+      this.messageRead = res.body!.mensajesnoleidos;
+    })
+  }
+
   logout(){
     this.securityServices.LogOff();
     this.router.navigate(["/logout"]);
-  }
-
-  notifyPubliFalse(){
-    this.newNotify = false;    
-    this.publicacionesService.$refreshPubli.emit(true);
   }
 
 }

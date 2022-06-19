@@ -35,7 +35,7 @@ export class ModalCComponent implements OnInit {
   constructor(
     private modal: ModalesService, 
     private _snackBar: MatSnackBar,
-    private service: ChatsService,
+    private chastService: ChatsService,
     private dataService: DataService,
     private securityServices: SecurityService
     )  { }
@@ -46,11 +46,11 @@ export class ModalCComponent implements OnInit {
   }
 
   CargarDatos(){
-    const url = `${this.apiURL}/Usuario/list/${this.usuario.usuariosId}`;
+    const url = `${this.apiURL}/Usuarios/${this.usuario.usuariosId}`;
     this.dataService.get<Usuarios[]>(url).subscribe(res => {
       this.dataSource = new MatTableDataSource(res.body!);
       this.dataSource.paginator = this.paginator;
-    })
+    });
   }
 
   CargarUsuario(){
@@ -74,8 +74,8 @@ export class ModalCComponent implements OnInit {
    mostrarChat(id: number, nombre: string){
 
     //Verficiar Existencia de Chat
-    const url = `${this.apiURL}/Chat/${this.usuario.usuariosId}/${id}`;
-    this.dataService.get<VerfifyChat>(url).subscribe(res => {
+    const url = `${this.apiURL}/Chats/${this.usuario.usuariosId}/${id}`;
+    this.dataService.get<VerfifyChat>(url).subscribe((res) => {
 
       //Mostrar Mensaje si no existe el chat
       if (res.body != null) {
@@ -90,7 +90,7 @@ export class ModalCComponent implements OnInit {
         }
 
         //emitir datos para el nuevo chat
-        this.service.$newChat.emit(data);          
+        this.chastService.$newChat.emit(data);          
         this.closeModal();        
       }
     },err => {
@@ -103,7 +103,7 @@ export class ModalCComponent implements OnInit {
     this._snackBar.open('Ya tienes un chat con esta persona!, buscalo en tu listado de chats!', '', {
       duration: 5000,
       horizontalPosition: 'center',
-      verticalPosition: 'top',
+      verticalPosition: 'top',      
     })
   }
 

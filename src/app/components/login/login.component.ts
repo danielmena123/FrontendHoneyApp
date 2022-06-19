@@ -64,12 +64,11 @@ export class LoginComponent implements OnInit {
       contraseña: contraseñaEncrypter
     }
     
-    const url = `${this.apiURL}/Access`;
+    const url = `${this.apiURL}/Login`;
     this.subRef$ = this.dataService.Post<IResponse>(url, this.loginAccess)
                     .subscribe((res) => {
                       const token = res.body?.token;
-                      const user = res.body?.usuario;
-                      this.securityService.SetAuthData(token, user);
+                      this.securityService.SetAuthData(token);
                       this.fakeloading();
                     }, err => {
                       console.log(err)
@@ -91,7 +90,7 @@ export class LoginComponent implements OnInit {
       roleId: 2
     }
 
-    const url = `${this.apiURL}/Usuario`;
+    const url = `${this.apiURL}/Usuarios`;
     this.dataService.Post<Usuario_C>(url, this.usuario).subscribe(res => {
       if(res != null){
         this.selected.setValue(0);
