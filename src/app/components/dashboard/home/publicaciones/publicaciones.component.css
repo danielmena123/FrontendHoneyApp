@@ -2,6 +2,7 @@
     margin-top: 1.5rem;
     margin-bottom: 1.5rem;
     box-shadow: 2px 2px 5px #999;
+    border-radius: 15px;
 }
 .container-buttons{
     display: flex;

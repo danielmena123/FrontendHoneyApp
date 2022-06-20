@@ -115,14 +115,14 @@ export class MensajesComponent implements OnInit {
     const url = `${this.apiURL}/Mensajes/${this.chatId}`;
     this.dataService.get<Mensajes[]>(url).subscribe( res => {
       this.Mensajes = res.body!;
-      this.Mensajes.forEach(element => {
-        const result =  new Date(Date.now()).getTime() - new Date(element.fecha).getTime();
+      this.Mensajes.forEach(item => {
+        const result =  new Date(Date.now()).getTime() - new Date(item.fecha).getTime();
         if ((result/(1000*60*60)) < 24)
         {
-          element.shortime = true;
+          item.shortime = true;
         }
         else{
-          element.shortime = false;
+          item.shortime = false;
         }
       })
     })
@@ -218,12 +218,23 @@ export class MensajesComponent implements OnInit {
    }
   }
 
-  Archivar(){
-    this.mostrar = false;
+  Borrar(id:number){
+    console.log(id);
+    const url = `${this.apiURL}/Mensajes/${id}`;
+    this.dataService.delete<any>(url).subscribe(res => {
+      this.CargarDatos();
+    },
+    err => {
+      console.log(err);
+    })
   }
 
   Eliminar(){
     this.mostrar = false;
+  }
+
+  Responder(){
+
   }
 
 }

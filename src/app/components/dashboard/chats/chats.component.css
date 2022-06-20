@@ -2,9 +2,11 @@
     margin-top: 1rem;
     box-shadow: 2px 2px 5px #999;
     margin-bottom: 2rem;
+    border-radius: 15px;
 }
 .card-chat {
     min-height: 88vh;
     margin-top: 1rem;
     box-shadow: 2px 2px 5px #999;
+    border-radius: 15px;
 }

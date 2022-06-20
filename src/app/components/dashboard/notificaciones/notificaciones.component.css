@@ -1,8 +1,10 @@
 .example-card{
-    margin-top: 1.4rem;
+    min-height: 80vh;
 }
 .notificacion-scroll{
-    min-height: 91vh;
+    margin-top: 1.5rem;
+    margin-bottom: 2rem;
+    min-height: 80vh;
     overflow-y: scroll;
     scrollbar-width: thin;
 }

@@ -9,6 +9,7 @@ import { SecurityService } from 'src/app/services/security.service';
 import { environment } from 'src/environments/environment';
 import { Subscription } from 'rxjs';
 import { Usuario_C } from 'src/app/models/usuarios';
+import { ThemePalette } from '@angular/material/core';
 
 @Component({
   selector: 'app-login',
@@ -19,6 +20,7 @@ export class LoginComponent implements OnInit {
 
   private apiURL = environment.apiURL;
 
+  color: ThemePalette = 'accent';
   public usuario!: Usuario_C;
   loginAccess!: Login;
   loginForm: FormGroup;

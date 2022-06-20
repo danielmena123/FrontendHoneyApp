@@ -23,12 +23,13 @@ export class NavbarComponent implements OnInit {
   //Variable de Datos
   usuario!: UsuarioAccess;
   //Variable de Notificaciones
+  hidden: boolean;
   newNotify: boolean = false;
   //Variable de notificaciones personalizadas
   newNotifyPer: boolean = false;
 
   //notificacion numero  de mensajes
-  messageRead: number;
+  messageRead: number = 0;
 
   constructor(
     private securityServices: SecurityService, 
@@ -37,7 +38,6 @@ export class NavbarComponent implements OnInit {
     private chatService: ChatsService,
     private notificacionesService: NotificacionesService,
     private dataservice: DataService,
-    private publicacionesService: PublicacionesService
     ) {
      }
 
@@ -75,6 +75,7 @@ export class NavbarComponent implements OnInit {
     this.usuario = data;
   }
 
+  //Cargar Salas
   CargarRooms(){
     const url = `${this.apiURL}/Chats/Salas/${this.usuario.usuariosId}`;
     this.dataservice.get<Salas[]>(url).subscribe(res => {
@@ -84,10 +85,18 @@ export class NavbarComponent implements OnInit {
     })
   }
 
+  //Cargar Notificaciones
   CargarNotifiaciones(){
     const url = `${this.apiURL}/Notificaciones/Mensajes/${this.usuario.usuariosId}`
     this.dataservice.get<Notificaciones>(url).subscribe(res => {
       this.messageRead = res.body!.mensajesnoleidos;
+      console.log(this.messageRead);
+      if(this.messageRead > 0){
+        this.hidden = false;
+      }
+      else{
+        this.hidden = true;
+      }
     })
   }
 

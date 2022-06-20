@@ -10,12 +10,8 @@
                     <mat-icon>more_vert</mat-icon>
                   </button>
                   <mat-menu #menu="matMenu">
-                    <button mat-menu-item (click)="Archivar()">
-                      <mat-icon>folder_delete</mat-icon>
-                      <span>Archivar</span>
-                    </button>
                     <button mat-menu-item (click)="Eliminar()">
-                      <mat-icon>delete_sweep</mat-icon>
+                      <mat-icon>delete_forever</mat-icon>
                       <span>Eliminar</span>
                     </button>
                   </mat-menu>                 
@@ -25,12 +21,25 @@
                 <div class="message-container" #listaMensajes>
                     <div *ngFor="let m of Mensajes" [ngClass]="{'messageRight': m.usuariosId == usuario.usuariosId, 'messageLeft': m.usuariosId != usuario.usuariosId}">
                         <mat-card class="card-message">
-                            <mat-card-header>
+                            <mat-card-header class="d-flex header-chat mt-2">
                                 <mat-card-title class="d-flex">
                                     <mat-icon>account_circle</mat-icon>
                                     <h4>{{m.nombreUsuario}}</h4>
                                 </mat-card-title>
-                            </mat-card-header>
+                                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                                    <mat-icon>more_vert</mat-icon>
+                                  </button>
+                                  <mat-menu #menu="matMenu">
+                                    <button mat-menu-item (click)="Responder()">
+                                      <mat-icon>reply_all</mat-icon>
+                                      <span>Responder</span>
+                                    </button>
+                                    <button mat-menu-item (click)="Borrar(m.mensajesId)" *ngIf="m.usuariosId == usuario.usuariosId">
+                                      <mat-icon>delete_sweep</mat-icon>
+                                      <span>Eliminar</span>
+                                    </button>
+                                  </mat-menu>
+                            </mat-card-header>                            
                             <mat-card-content>
                                 <p>{{m.descripcion}}</p>
                                 <h5 *ngIf="m.shortime == true">{{m.fecha | date: 'shortTime'}}</h5>

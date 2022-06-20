@@ -10,7 +10,7 @@
             <div class="col-lg-12 contenedor-mensajes" *ngFor="let c of chats">
                 <button class="btn-listado" (click)="openMensajes(c.chatsId, c.nombreUsuario)">
                     <span>
-                        <mat-card class="card-chat">
+                        <mat-card class="card-chat ">
                             <mat-card-content>
                                 <div class="d-flex content-chat">
                                     <div class="d-flex">
@@ -21,7 +21,11 @@
                                     <h5 *ngIf="c.shortime == false" class="fecha-head mt-1">{{c.lastFecha | date :'mediumDate'}}</h5>
                                 </div>
                                 <div class="d-flex content-chat">
-                                    <p>{{c.mensaje | slice:0:23}}{{c.mensaje.length > 23 ? '...': ''}}</p><p *ngIf="c.noLeidos > 0"><strong>{{c.noLeidos}}</strong></p>
+                                    <div class="d-flex">
+                                        <p *ngIf="c.lastusuarioId == usuario.usuariosId">&#10004;</p> &nbsp;<p>{{c.mensaje | slice:0:20}}{{c.mensaje.length > 20 ? '...': ''}}</p>                                        
+                                    </div>                                    
+                                    <span *ngIf="c.noLeidos > 0" matBadgePosition="before" matBadge="{{c.noLeidos}}" matBadgeOverlap="false" matBadgeColor="warn"></span>
+                                    <!-- <p *ngIf="c.noLeidos > 0"><strong>{{c.noLeidos}}</strong></p> -->
                                 </div>
                             </mat-card-content>
                         </mat-card>

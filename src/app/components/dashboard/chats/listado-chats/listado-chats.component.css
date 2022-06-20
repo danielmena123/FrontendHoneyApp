@@ -1,6 +1,7 @@
 .contenedor-listado{
     box-shadow: 2px 2px 5px #999;
     min-height: 73vh;
+    border-radius: 15px;
 }
 .btn-listado{
     min-width: 100%;
@@ -27,6 +28,9 @@
 }
 .content-chat{
     justify-content: space-between;
+}
+.card-chat{
+    border-radius: 15px;
 }
 /* .fecha-head{
     margin-left: 8px;

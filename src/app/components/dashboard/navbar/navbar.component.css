@@ -1,22 +1,22 @@
 .example-spacer {
-    flex: 1 1 auto;
-  }
-  .btn-notify{
-    margin-right: 5px;
-  }
-  .home-parent{
-    position: relative;
-  }
-  .circle-son{
-    z-index: 100;
-    width: 40%;
-    bottom: 16px;
-    margin: auto;
-    position: absolute;
-  }
-  .label-son{
-    z-index: 1000;
-    bottom: 10px;
-    width: 40%;
-    position: absolute;
-  }
+  flex: 1 1 auto;
+}
+.btn-notify{
+  margin-right: 5px;
+}
+.home-parent{
+  position: relative;
+}
+.circle-son{
+  z-index: 100;
+  width: 40%;
+  bottom: 16px;
+  margin: auto;
+  position: absolute;
+}
+.label-son{
+  z-index: 1000;
+  bottom: 10px;
+  width: 40%;
+  position: absolute;
+}

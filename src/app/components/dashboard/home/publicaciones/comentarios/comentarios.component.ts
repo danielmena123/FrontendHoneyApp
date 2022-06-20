@@ -53,6 +53,15 @@ export class ComentariosComponent implements OnInit {
     const url = `${this.apiURL}/Comentarios/${this.publicacionesId}`;
     this.dataService.get<Comentarios[]>(url).subscribe(res => {
       this.comentarios = res.body!;
+      this.comentarios.forEach(item => {
+        const result =  new Date(Date.now()).getTime() - new Date(item.fecha).getTime();
+        if ((result/(1000*60*60)) < 24){
+          item.shortime = true;
+        }
+        else{
+          item.shortime = false;
+        }
+      })
     })
   }
 

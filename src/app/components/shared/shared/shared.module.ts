@@ -26,6 +26,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list'
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatBadgeModule} from '@angular/material/badge';
 
 @NgModule({
   declarations: [],
@@ -52,6 +53,7 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatListModule,
     MatTabsModule,
     MatMenuModule,
+    MatBadgeModule,
   ],
   exports:[
     CommonModule,
@@ -76,6 +78,7 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatListModule,
     MatTabsModule,
     MatMenuModule,
+    MatBadgeModule
   ]
 })
 export class SharedModule { }

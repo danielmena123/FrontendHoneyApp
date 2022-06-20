@@ -18,7 +18,8 @@ export interface Chats{
     mensaje: string,
     lastFecha: Date,
     shortime: boolean,
-    noLeidos: number,    
+    noLeidos: number,   
+    lastusuarioId: number; 
 }
 
 export interface Salas {
