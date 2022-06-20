@@ -90,7 +90,6 @@ export class NavbarComponent implements OnInit {
     const url = `${this.apiURL}/Notificaciones/Mensajes/${this.usuario.usuariosId}`
     this.dataservice.get<Notificaciones>(url).subscribe(res => {
       this.messageRead = res.body!.mensajesnoleidos;
-      console.log(this.messageRead);
       if(this.messageRead > 0){
         this.hidden = false;
       }

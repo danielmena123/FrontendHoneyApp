@@ -35,3 +35,6 @@
     min-width: 75%;
     border-radius: 15px;
 }
+.header-comment{
+    justify-content: space-between;
+}

@@ -1,0 +1,23 @@
+<div class="modal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-md">
+      <div class="modal-content">
+      <form [formGroup]="answerForm" (ngSubmit)="Actualizar()">
+          <div class="modal-header">
+              <h3 class="modal-title mt-2">Editar Respuesta</h3>
+              <button (click)="closeModal()" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>          
+            <div class="modal-body">
+              <div class="d-flex">
+                <mat-icon>account_circle</mat-icon>
+                <h3>{{usuario.nombreUsuario}}</h3>
+              </div>
+              <div class="mb-3 textComentario">
+                <textarea class="form-control" rows="5" formControlName="Descripcion"></textarea>
+              </div>   
+              <hr>
+              <button class="w-100" type="submit" mat-button [disabled]="answerForm.invalid"><mat-icon>edit_note</mat-icon>Actualizar</button>         
+            </div>
+      </form>      
+      </div>
+    </div>
+  </div>

@@ -10,7 +10,12 @@ export interface Comentarios {
 }
 
 export interface Comentario_C {
-    descripcion: string,
-    publicacionesId: number,
-    usuariosId: number
+    descripcion: string;
+    publicacionesId: number;
+    usuariosId: number;
+}
+
+export interface Comentario_U{
+    descripcion: string;
+    comentariosId: number;
 }

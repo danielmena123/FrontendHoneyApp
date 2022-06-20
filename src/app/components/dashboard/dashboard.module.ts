@@ -17,6 +17,9 @@ import { MensajesComponent } from './chats/mensajes/mensajes.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ErrorComponent } from './error/error.component';
 import { NotificacionesComponent } from './notificaciones/notificaciones.component';
+import { PublicacionesEditComponent } from './home/publicaciones-edit/publicaciones-edit.component';
+import { ComentariosEditComponent } from './home/publicaciones/comentarios-edit/comentarios-edit.component';
+import { RespuestasEditComponent } from './home/publicaciones/comentarios/respuestas-edit/respuestas-edit.component';
 
 
 @NgModule({
@@ -35,6 +38,9 @@ import { NotificacionesComponent } from './notificaciones/notificaciones.compone
     NavbarComponent,
     ErrorComponent,
     NotificacionesComponent,
+    PublicacionesEditComponent,
+    ComentariosEditComponent,
+    RespuestasEditComponent,
   ],
   imports: [
     CommonModule,

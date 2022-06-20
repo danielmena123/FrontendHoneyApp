@@ -1,13 +1,26 @@
 <div class="container">
     <div class="row">
-        <mat-card *ngFor="let r of respuestas; let i = index" class="card-respuestas bg-light">
-            <mat-card-header>
-                <mat-card-title class="d-flex">
-                    <mat-icon>account_circle</mat-icon>
-                    <h3>{{r.nombreUsuario}}</h3>
-                </mat-card-title>
-            </mat-card-header>
+        <mat-card *ngFor="let r of respuestas; let i = index" class="card-respuestas bg-light">            
             <mat-card-content>
+                <div class="d-flex header-respuesta">
+                    <mat-card-title class="d-flex">
+                        <mat-icon>account_circle</mat-icon>
+                        <h3>{{r.nombreUsuario}}</h3>
+                    </mat-card-title>
+                    <button *ngIf="r.usuariosId == usuario.usuariosId" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                        <mat-icon>more_vert</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item (click)="openModal(r)">
+                            <mat-icon>edit_note</mat-icon>
+                            <span>Editar</span>
+                        </button>
+                    <button mat-menu-item (click)="Eliminar(r.respuestasId)">
+                        <mat-icon>delete_forever</mat-icon>
+                        <span>Eliminar</span>
+                    </button>
+                    </mat-menu>
+                </div>
                 <p>{{r.descripcion}}</p>
                 <mat-divider inset></mat-divider>
                 <div class="container-buttons">
@@ -28,4 +41,7 @@
             </div>
         </form>   
     </div>
+</div>
+<div *ngIf="modalSwitch == true">
+    <app-respuestas-edit [answer]="answer"></app-respuestas-edit>
 </div>

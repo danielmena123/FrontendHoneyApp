@@ -5,7 +5,8 @@ import { EventEmitter, Injectable } from '@angular/core';
 })
 export class PublicacionesService {
 
-  $refreshPubli = new EventEmitter<any>();
+  $refreshPubli = new EventEmitter<any>();  
+  $modal = new EventEmitter<any>();
 
   constructor() { }
 }

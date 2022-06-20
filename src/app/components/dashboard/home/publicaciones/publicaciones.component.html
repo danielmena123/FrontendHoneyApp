@@ -1,13 +1,26 @@
 <div class="container">    
     <mat-card *ngFor="let p of publicaciones; let i = index" class="card-publicaciones bg-light">
-        <mat-card-header>
-            <mat-card-title class="d-flex">
-                <mat-icon>account_circle</mat-icon>
-                <h3>{{p.nombreUsuario}}</h3>
-            </mat-card-title>
-            <mat-card-subtitle><h4>{{p.fecha | date :'fullDate'}}</h4></mat-card-subtitle>
-        </mat-card-header>
         <mat-card-content>
+            <div class="d-flex header-publicaction">
+                <mat-card-title class="d-flex mt-2">
+                    <mat-icon>account_circle</mat-icon>
+                    <h3>{{p.nombreUsuario}}</h3>
+                </mat-card-title>
+                <button *ngIf="p.usuariosId == usuario.usuariosId" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="openModal(p)">
+                        <mat-icon>edit_note</mat-icon>
+                        <span>Editar</span>
+                    </button>
+                <button mat-menu-item (click)="Eliminar(p.publicacionesId)">
+                    <mat-icon>delete_forever</mat-icon>
+                    <span>Eliminar</span>
+                </button>
+                </mat-menu>
+            </div>            
+            <mat-card-subtitle><h4>{{p.fecha | date :'fullDate'}}</h4></mat-card-subtitle>
             <p>{{p.descripcion}}</p>      
             <mat-divider inset></mat-divider>  
             <div class="container-buttons">
@@ -21,4 +34,7 @@
             <app-comentarios [publicacionesId]="publicacionesId"></app-comentarios>
         </mat-card-actions>
     </mat-card>
+</div>
+<div *ngIf="modalSwitch == true">
+    <app-publicaciones-edit [publicacion]="publicacion"></app-publicaciones-edit>
 </div>

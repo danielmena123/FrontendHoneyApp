@@ -19,6 +19,7 @@ export class PublicacionesComponent implements OnInit, OnDestroy {
   private apiURL = environment.apiURL;
 
   usuario!: UsuarioAccess;
+  publicacion: Publicaciones;
   publicaciones!: Publicaciones[];
   modalSwitch: boolean = false;
   publicacionesId!: number;
@@ -27,6 +28,7 @@ export class PublicacionesComponent implements OnInit, OnDestroy {
 
   constructor(
     private modal: ModalesService, 
+    private publicacionesService: PublicacionesService,
     private securityServices: SecurityService,
     private dataService: DataService,
     ) {
@@ -40,6 +42,12 @@ export class PublicacionesComponent implements OnInit, OnDestroy {
         this.ngOnInit();
       }
     });
+    this.publicacionesService.$modal.subscribe(res => {
+      if(res == true){
+        this.modalSwitch = false;
+        this.CargarDatos();
+      }
+    })
   }
 
   CargarDatos(){
@@ -67,6 +75,18 @@ export class PublicacionesComponent implements OnInit, OnDestroy {
         element.activo = false;
       });
     }
+  }
+
+  openModal(data: Publicaciones){
+    this.publicacion = data;
+    this.modalSwitch = true;
+  }
+
+  Eliminar(id: number){
+    const url = `${this.apiURL}/Publicaciones/${id}`;
+    this.dataService.delete(url).subscribe(res => {
+      this.publicacionesService.$modal.emit(true);
+    })
   }
 
   addLike(publicacionId: number, index: number){

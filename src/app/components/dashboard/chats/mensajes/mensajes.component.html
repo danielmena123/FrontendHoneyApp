@@ -21,8 +21,8 @@
                 <div class="message-container" #listaMensajes>
                     <div *ngFor="let m of Mensajes" [ngClass]="{'messageRight': m.usuariosId == usuario.usuariosId, 'messageLeft': m.usuariosId != usuario.usuariosId}">
                         <mat-card class="card-message">
-                            <mat-card-header class="d-flex header-chat mt-2">
-                                <mat-card-title class="d-flex">
+                            <mat-card-header class="d-flex header-chat">
+                                <mat-card-title class="d-flex mt-2">
                                     <mat-icon>account_circle</mat-icon>
                                     <h4>{{m.nombreUsuario}}</h4>
                                 </mat-card-title>

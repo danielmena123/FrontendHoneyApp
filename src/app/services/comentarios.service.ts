@@ -5,5 +5,7 @@ import { EventEmitter, Injectable } from '@angular/core';
 })
 export class ComentariosService {
 
+  $modal = new EventEmitter<any>();
+
   constructor() { }
 }

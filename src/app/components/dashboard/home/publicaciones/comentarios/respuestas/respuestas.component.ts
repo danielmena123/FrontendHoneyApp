@@ -4,6 +4,7 @@ import { UsuarioAccess } from 'src/app/models/access';
 import { likes, likes_C } from 'src/app/models/likes';
 import { Respuestas, Respuesta_C } from 'src/app/models/Respuestas';
 import { DataService } from 'src/app/services/data.service';
+import { RespuestasService } from 'src/app/services/respuestas.service';
 import { SecurityService } from 'src/app/services/security.service';
 import { environment } from 'src/environments/environment';
 
@@ -18,14 +19,17 @@ export class RespuestasComponent implements OnInit {
 
   usuario!: UsuarioAccess;
   like!: likes_C; 
+  modalSwitch: boolean = false;
   respuestas!: Respuestas[];
   respuestForm!: FormGroup;
   respuesta!: Respuesta_C;
+  answer: Respuestas;
 
   @Input() comentariosId!: number;
 
   constructor(
     private _builder: FormBuilder, 
+    private respuestasService: RespuestasService,
     private dataService: DataService,
     private securityServices: SecurityService
     ) {
@@ -37,6 +41,12 @@ export class RespuestasComponent implements OnInit {
   ngOnInit(): void {
     this.CargarUsuario();
     this.CargarDatos();
+    this.respuestasService.$modal.subscribe(res => {
+      if(res == true){
+        this.CargarDatos();
+        this.modalSwitch = false;
+      }
+    })
   }
 
   CargarDatos(){
@@ -65,6 +75,18 @@ export class RespuestasComponent implements OnInit {
     },
     err => {
       console.log(err);
+    })
+  }
+
+  openModal(data: Respuestas){
+    this.answer = data;
+    this.modalSwitch = true;
+  }
+
+  Eliminar(id: number){
+    const url = `${this.apiURL}/Respuestas/${id}`;
+    this.dataService.delete(url).subscribe(res => {
+      this.CargarDatos();
     })
   }
 

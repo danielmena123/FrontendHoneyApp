@@ -20,9 +20,11 @@ export class ComentariosComponent implements OnInit {
 
   usuario!: UsuarioAccess;
   like!: likes_C; 
+  modalSwitch: boolean = false;
   comentarios!: Comentarios[];
   commentForm!: FormGroup;
   comentario!: Comentario_C;
+  comment: Comentarios;
   comentariosId!: number;
   @ViewChild('div') div!: ElementRef;
 
@@ -30,6 +32,7 @@ export class ComentariosComponent implements OnInit {
 
   constructor(
     private _builder: FormBuilder, 
+    private comentariosService: ComentariosService,
     private dataService: DataService,
     private securityServices: SecurityService
     ) {
@@ -41,6 +44,12 @@ export class ComentariosComponent implements OnInit {
   ngOnInit(): void {
     this.CargarUsuario();
     this.CargarDatos();
+    this.comentariosService.$modal.subscribe(res => {
+      if(res == true){
+        this.CargarDatos();
+        this.modalSwitch = false;
+      }
+    })
   }
 
   CargarUsuario(){
@@ -95,6 +104,18 @@ export class ComentariosComponent implements OnInit {
         element.activo = false;
       })
     }
+  }
+
+  openModal(data: Comentarios){
+    this.comment = data;
+    this.modalSwitch = true;
+  }
+
+  Eliminar(id: number){
+    const url = `${this.apiURL}/Comentarios/${id}`;
+    this.dataService.delete(url).subscribe(res => {
+      this.comentariosService.$modal.emit(true);
+    })
   }
 
   addLike(comentarioId: number, index: number){
