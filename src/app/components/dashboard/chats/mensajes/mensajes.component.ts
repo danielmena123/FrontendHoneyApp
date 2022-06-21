@@ -93,7 +93,6 @@ export class MensajesComponent implements OnInit {
         this.chatId = data.chatsId;
         data.shortime = true;
         this.newChat = false;
-        this.CargarDatos();
         this.Mensajes.push(data);
         this.signalr.Rooms();
         this.notificacionesService.$refrescarMensajes.emit(true);        
@@ -205,8 +204,6 @@ export class MensajesComponent implements OnInit {
 
           //refrescar listado de chats
           this.chatService.$refrescarChats.emit(true);
-          // this.signalr.Rooms();
-          // this.notificacionesService.$refrescarMensajes.emit(true);
           //resetear textarea
           this.mensajeForm.reset();
         })
