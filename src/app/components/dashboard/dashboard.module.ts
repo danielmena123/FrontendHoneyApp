@@ -20,6 +20,8 @@ import { NotificacionesComponent } from './notificaciones/notificaciones.compone
 import { PublicacionesEditComponent } from './home/publicaciones-edit/publicaciones-edit.component';
 import { ComentariosEditComponent } from './home/publicaciones/comentarios-edit/comentarios-edit.component';
 import { RespuestasEditComponent } from './home/publicaciones/comentarios/respuestas-edit/respuestas-edit.component';
+import { UsuarioComponent } from './usuario/usuario.component';
+import { AjustesComponent } from './ajustes/ajustes.component';
 
 
 @NgModule({
@@ -41,6 +43,8 @@ import { RespuestasEditComponent } from './home/publicaciones/comentarios/respue
     PublicacionesEditComponent,
     ComentariosEditComponent,
     RespuestasEditComponent,
+    UsuarioComponent,
+    AjustesComponent,
   ],
   imports: [
     CommonModule,

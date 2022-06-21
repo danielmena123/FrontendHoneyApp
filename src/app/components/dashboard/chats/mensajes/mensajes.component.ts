@@ -5,7 +5,6 @@ import { Chats, Chat_Detalle_C } from 'src/app/models/chats';
 import { Mensajes, Mensajes_C } from 'src/app/models/mensajes';
 import { ChatsService } from 'src/app/services/chats.service';
 import { DataService } from 'src/app/services/data.service';
-import { ModalesService } from 'src/app/services/modales.service';
 import { NotificacionesService } from 'src/app/services/notificaciones.service';
 import { SecurityService } from 'src/app/services/security.service';
 import { SignalrcustomService } from 'src/app/services/signalrcustom.service';
