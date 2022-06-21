@@ -1,0 +1,14 @@
+.content-user{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    margin-top: 10rem;
+}
+.ancho{
+    width: 100%;
+}
+.card-usuario{
+    max-width: 480px;
+    border-radius: 15px;
+}

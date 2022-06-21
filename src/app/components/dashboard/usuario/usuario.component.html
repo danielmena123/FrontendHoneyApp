@@ -1,1 +1,45 @@
-<p>usuario works!</p>
+<div class="container">
+    <div class="row">
+        <div class="content-user">
+            <mat-card class="card-usuario">
+                <mat-card-content>
+                    <form [formGroup]="userForm" (ngSubmit)="Actualizar()">
+                        <mat-card-title><h3><strong>Datos Personales</strong></h3></mat-card-title>
+                        <mat-card-subtitle><h4>{{fecha | date: 'fullDate'}}</h4></mat-card-subtitle>
+                        <mat-form-field class="ancho" appearance="fill">
+                            <mat-label class="text-primary">Nombres</mat-label>
+                            <input formControlName="Nombres" matInput>
+                          </mat-form-field>
+                          <mat-form-field class="ancho" appearance="fill">
+                            <mat-label class="text-primary">Apellidos</mat-label>
+                            <input formControlName="Apellidos" matInput>
+                          </mat-form-field>
+                          <mat-form-field class="ancho" appearance="fill">
+                            <mat-label class="text-primary">Nombre Usuario</mat-label>
+                            <input formControlName="NombreUsuario" matInput>
+                          </mat-form-field>
+                          <mat-form-field class="ancho" appearance="fill">
+                            <mat-label class="text-primary">Correo Electronico</mat-label>
+                            <input formControlName="CorreoElectronico" matInput>
+                          </mat-form-field>
+                          <mat-form-field class="ancho" appearance="fill">
+                            <mat-label class="text-primary">Escriba su Contraseña Actual</mat-label>
+                                <input matInput [type]="hide ? 'password' : 'text'" formControlName="ContraseñaAnterior">
+                                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button>
+                          </mat-form-field>
+                          <mat-form-field class="ancho" appearance="fill">
+                            <mat-label class="text-primary">Escriba su Nueva Contraseña</mat-label>
+                                <input matInput [type]="hidetwo ? 'password' : 'text'" formControlName="Contraseña">
+                                <button mat-icon-button matSuffix (click)="hidetwo = !hidetwo" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidetwo">
+                                <mat-icon>{{hidetwo ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button>
+                          </mat-form-field>
+                          <button class="ancho" mat-raised-button color="primary" [disabled]="userForm.invalid"><mat-icon>manage_accounts</mat-icon> Actualizar</button>     
+                    </form>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>

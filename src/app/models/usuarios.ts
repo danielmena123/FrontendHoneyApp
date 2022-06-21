@@ -12,7 +12,8 @@ export interface Usuario {
     nombreUsuario: string,
     correoElectronico: string,
     contraseña: string,
-    nombre: string
+    nombre?: string,
+    rolesId?: number
 }
 
 export interface Usuario_C {
