@@ -20,3 +20,9 @@
   width: 40%;
   position: absolute;
 }
+
+@media (max-width: 600px){
+  .example-spacer{
+    display: none;
+  }
+}

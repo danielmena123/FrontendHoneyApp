@@ -10,3 +10,8 @@
     box-shadow: 2px 2px 5px #999;
     border-radius: 15px;
 }
+@media (max-width: 600px){
+    .card-chat{
+        display: none;
+    }
+}

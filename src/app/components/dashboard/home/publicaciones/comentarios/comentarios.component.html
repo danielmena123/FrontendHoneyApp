@@ -39,7 +39,7 @@
         </div>        
         <form [formGroup]="commentForm" (ngSubmit)="enviarComentario()">
             <div class="mb-3 textComentario">    
-                <textarea class="form-control" formControlName="Descripcion" rows="2" placeholder="Escriba un Comentario..."></textarea>
+                <textarea class="form-control" formControlName="Descripcion" rows="1" placeholder="Escriba un Comentario..."></textarea>
                 <button class="btn-send" type="submit" [disabled]="commentForm.invalid">
                     <span class="material-icons">
                         send

@@ -6,3 +6,9 @@
 .mat-card-header button{
     box-shadow: 2px 2px 5px #999;
 }
+
+@media (max-width: 600px){
+    .bloq-notificacion{
+        display: none;
+    }
+}

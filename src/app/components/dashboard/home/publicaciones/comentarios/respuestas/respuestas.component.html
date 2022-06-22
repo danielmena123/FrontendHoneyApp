@@ -32,7 +32,7 @@
         </mat-card>
         <form [formGroup]="respuestForm" (ngSubmit)="enviarRespuesta()">
             <div class="mb-3 textComentario">    
-                <textarea class="form-control" formControlName="Descripcion" rows="2" placeholder="Escriba un Comentario..."></textarea>
+                <textarea class="form-control" formControlName="Descripcion" rows="1" placeholder="Escriba un Comentario..."></textarea>
                 <button class="btn-send" type="submit" [disabled]="respuestForm.invalid">
                     <span class="material-icons">
                         send
