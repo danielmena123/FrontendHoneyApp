@@ -53,7 +53,7 @@
     
     <form [formGroup]="mensajeForm" (ngSubmit)="enviarMensaje()">
         <div class="mb-3 textComentario">    
-            <input type="text" class="form-control" formControlName="Descripcion" placeholder="Escriba un Mensaje..." (keypress)="($event.which === 13)?enviarMensaje():0">
+            <input type="text" class="form-control" formControlName="Descripcion" placeholder="Escriba un Mensaje...">
             <!-- <textarea class="form-control" formControlName="Descripcion" rows="1" placeholder="Escriba un Mensaje..." (keypress)="($event.which === 13)?enviarMensaje():0"></textarea> -->
             <button class="btn-send" type="submit" [disabled]="mensajeForm.invalid">
                 <span class="material-icons">
