@@ -23,7 +23,7 @@ export class NavbarComponent implements OnInit {
   //Variable de Datos
   usuario!: UsuarioAccess;
   //Variable de Notificaciones
-  hidden: boolean;
+  hidden: boolean = true;
   newNotify: boolean = false;
   //Variable de notificaciones personalizadas
   newNotifyPer: boolean = false;
