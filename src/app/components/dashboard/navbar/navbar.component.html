@@ -9,7 +9,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" [routerLink]="['/dashboard/']"><mat-icon class="home-parent">home</mat-icon> Home</a>
+            <a class="nav-link active" aria-current="page" [routerLink]="['/dashboard/']"><mat-icon>home</mat-icon> Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" [routerLink]="['/dashboard/chats']"><mat-icon [matBadgeHidden]="hidden" matBadge="{{messageRead.toString() | slice:0:1}}{{messageRead.toString().length > 1 ? '+': ''}}" matBadgeColor="warn" matBadgeSize="small">chat</mat-icon> Chats</a>
