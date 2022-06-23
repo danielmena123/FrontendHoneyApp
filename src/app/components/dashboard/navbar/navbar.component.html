@@ -1,44 +1,63 @@
 <!-- <mat-toolbar> -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" [routerLink]="['/dashboard/']"><strong>HoneyApp</strong></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <span class="example-spacer"></span>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" [routerLink]="['/dashboard/']"><mat-icon>home</mat-icon> Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" [routerLink]="['/dashboard/chats']"><mat-icon [matBadgeHidden]="hidden" matBadge="{{messageRead.toString() | slice:0:1}}{{messageRead.toString().length > 1 ? '+': ''}}" matBadgeColor="warn" matBadgeSize="small">chat</mat-icon> Chats</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" [routerLink]="['/dashboard/ayuda']"><mat-icon>info</mat-icon> Ayuda</a>
-          </li>
+  <div class="container-navbar">
+    <div class="contaier-log">
+      <a class="navbar-brand text-ligth" [routerLink]="['/dashboard/']"><strong>HoneyApp</strong></a>
+    </div>
+    <div class="container-options">
+      
+         
+            <a class="active-top" aria-current="page" [routerLink]="['/dashboard/']">
+
+              <mat-icon>home</mat-icon>
+              <p> Home</p>
+            </a>
+        
+        
+            <a class="" aria-current="page" [routerLink]="['/dashboard/chats']">
+              <mat-icon [matBadgeHidden]="hidden" matBadge="{{messageRead.toString() | slice:0:1}}{{messageRead.toString().length > 1 ? '+': ''}}" matBadgeColor="warn" matBadgeSize="small">chat</mat-icon>
+              <p> Chats</p>
+            </a>
+          <a class="" aria-current="page" [routerLink]="['/dashboard/ayuda']">
+            <mat-icon>info</mat-icon>
+            <p> Ayuda</p>
+          </a>
+        
+        
+         
+        
+    </div>
+    <div class="container-perfil">
+      <div class="dropdown">
+        <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-person-circle"></i>
+          {{usuario.nombreUsuario}}
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li><a class="dropdown-item" [routerLink]="['/dashboard/usuario']"><i class="bi bi-person-bounding-box"></i> Perfil</a></li>
+          <li><a class="dropdown-item" [routerLink]="['/dashboard/ajustes']"><i class="bi bi-gear-fill"></i> Ajustes</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item" role="button" (click)="logout()"><i class="bi bi-door-open-fill"></i> Cerrar Session</a></li>
         </ul>
-        <!-- <button mat-button [routerLink]="['/dashboard/']"><mat-icon class="home-parent">home</mat-icon> Home</button>  
-        <button mat-button [routerLink]="['/dashboard/chats']"><mat-icon [matBadgeHidden]="hidden" matBadge="{{messageRead.toString() | slice:0:1}}{{messageRead.toString().length > 1 ? '+': ''}}" matBadgeColor="warn" matBadgeSize="small">chat</mat-icon> Chats</button>
-        <button mat-button [routerLink]="['/dashboard/ayuda']"><mat-icon>info</mat-icon> Ayuda</button> -->
-        <form class="d-flex">           
-          <!-- <button class="btn-notify" mat-mini-fab color="primary" *ngIf="newNotify == false"><mat-icon>notifications</mat-icon></button> -->
-          <!-- <button class="btn-notify" mat-mini-fab color="accent" *ngIf="newNotify == true"><mat-icon>notifications_active</mat-icon></button> -->
-          <div class="dropdown">
-            <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-person-circle"></i>
-              {{usuario.nombreUsuario}}
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              <li><a class="dropdown-item" [routerLink]="['/dashboard/usuario']"><i class="bi bi-person-bounding-box"></i> Perfil</a></li>
-              <li><a class="dropdown-item" [routerLink]="['/dashboard/ajustes']"><i class="bi bi-gear-fill"></i> Ajustes</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" role="button" (click)="logout()"><i class="bi bi-door-open-fill"></i> Cerrar Session</a></li>
-            </ul>
-          </div>
-      </form>
       </div>
     </div>
-  </nav>
+
+
+
+  </div>
+  <div class="navbar-mobile">
+    <div class="navbar-mobile-items">
+     
+        
+          <a class="btnMobil" aria-current="page" [routerLink]="['/dashboard/chats']"><mat-icon [matBadgeHidden]="hidden" matBadge="{{messageRead.toString() | slice:0:1}}{{messageRead.toString().length > 1 ? '+': ''}}" matBadgeColor="warn" matBadgeSize="small">chat</mat-icon> </a>
+        
+       
+          <a class="btnMobil  activeNabMobil" aria-current="page" [routerLink]="['/dashboard/']"><mat-icon>home</mat-icon></a>
+        
+       
+          <a class="btnMobil " aria-current="page" [routerLink]="['/dashboard/ayuda']"><mat-icon>info</mat-icon></a>
+       
+      
+    </div>
+  </div>
   <!-- <span>HoneyApp</span> -->
   <!-- <span class="example-spacer"></span> -->
   

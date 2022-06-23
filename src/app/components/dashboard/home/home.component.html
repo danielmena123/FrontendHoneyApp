@@ -1,16 +1,13 @@
-<section>
+<section class="session-publicaciones">
     <div class="container">
         <div class="row">
+            
             <div class="col-lg-8">
-                <mat-card class="bg-light card-titulo">
-                    <mat-card-header>
-                        <div class="d-grid gap-2 col-9 mx-auto">
-                            <button mat-raised-button (click)="openModal()">
-                                <mat-icon>receipt_long</mat-icon> ¿Qué hay de nuevo {{usuario.nombreUsuario}}?
-                            </button> 
-                        </div>                        
-                    </mat-card-header>
-                </mat-card>   
+                <div class="session-publicaciones-btn">
+                    <button mat-raised-button (click)="openModal()">
+                        <mat-icon>receipt_long</mat-icon> ¿Qué hay de nuevo {{usuario.nombreUsuario}}?
+                    </button> 
+                </div>  
                 <app-publicaciones></app-publicaciones>
             </div>
             <div class="col-lg-4 bloq-notificacion">

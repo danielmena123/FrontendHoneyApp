@@ -3,6 +3,10 @@
     align-items: center;
     height: 100%;
     justify-content: center;
+    
+}
+.cajaSession{
+  box-shadow: -3px 2px 8px 12px rgba(0, 0, 0, 0.089);
 }
 .example-card {
     max-width: 400px;    

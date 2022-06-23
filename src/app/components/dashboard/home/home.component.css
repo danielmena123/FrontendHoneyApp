@@ -1,14 +1,32 @@
 .card-titulo{
     margin-top: 1.5rem;
-    box-shadow: 2px 2px 5px #999;
-    border-radius: 15px;
-}
-.mat-card-header button{
-    box-shadow: 2px 2px 5px #999;
+    
 }
 
-@media (max-width: 600px){
-    .bloq-notificacion{
-        display: none;
-    }
+.session-publicaciones .col-lg-8{
+    background: var(--color-neutro);
+    padding: 5px;
+    border-radius: 15px;
+}
+.session-publicaciones-btn{
+    width: 90%;
+    margin: 0 auto;
+    padding-top: 30px;
+    padding-bottom: 20px;
+}
+.session-publicaciones-btn button{
+    width: 100%;
+    padding: 8px 8px;
+    background: var( --color-primario-opacity);
+    color: var(--color-neutro);
+    font-size: 1rem;
+}
+.bloq-notificacion{
+    position: relative;
+}
+
+@media (max-width: 990px){
+   .bloq-notificacion{
+    order: 1;
+   }
 }

@@ -1,9 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+:root{
+    --color-primario : rgb(2, 48, 71);
+    --color-primario-opacity :rgba(2, 48, 71, 0.815);
+    --color-secundario:rgb(33, 158, 188);
+    --color-terciario:rgb(142, 202, 230);
+    --color-cuarto:rgb(255, 183, 3);
+    --color-neutro:#ffff;
+}
 
-html, body { height: 100%; }
 body { 
-    background: #43C6AC;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to top, #191654, #43C6AC);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to top, #191654, #43C6AC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: #f5f5f5;  /* fallback for old browsers */
+    
     margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; 
 }

@@ -1,3 +1,44 @@
+.container-navbar{
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+  top: 0;
+  background: var(--color-primario);
+  color: var(--color-neutro);
+  box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.24);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 15px;
+}
+.contaier-log a{
+  color: var(--color-neutro);
+}
+.container-options{
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding-top: 4px;
+}
+
+.container-options  a{
+ color: var(--color-secundario) ;
+  text-align: center;
+ font-size: 1rem;
+ text-decoration: none;
+ display: flex;
+}
+.container-options a p{
+  padding-top: 3px;
+}
+.active-top{
+  color: var(--color-terciario) !important;
+  
+}
+.container-options a:hover{
+  color: var(--color-terciario) !important;
+}
+
 .example-spacer {
   flex: 1 1 auto;
 }
@@ -20,9 +61,66 @@
   width: 40%;
   position: absolute;
 }
+.navbar-mobile{
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+z-index: 100;
+background: var(--color-neutro);
+display: none;
+box-shadow: -2px -5px 5px 0px rgba(0, 0, 0, 0.205);
+}
+.navbar-mobile-items{
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.navbar-mobile-items .btnMobil{
+  color: var(--color-secundario);
+  padding: 15px 12px 8px 12px;
+  border-bottom: 4px solid #02304700;
+  transition: all ease .2s;
+
+}
+.navbar-mobile-items .btnMobil:hover{
+  color: var(--color-primario);
+}
+
+.activeNabMobil{
+  color: var(--color-primario) !important;
+  border-bottom: 4px solid #023047 !important;
+}
+
+.container-perfil .dropdown button{
+  background: none !important;
+  border: 1px solid var(--color-secundario);
+  color: var(--color-neutro);
+transition: all ease .8s;
+
+}
+.container-perfil .dropdown button:hover{
+background: var(--color-secundario) !important;
+}
+.container-perfil .dropdown-menu li{
+  padding: 4px;
+}
+
+.container-perfil .dropdown-menu li a{
+  padding: 8px;
+  
+}
+
 
 @media (max-width: 600px){
   .example-spacer{
+    display: none;
+  }
+  .navbar-mobile{
+    display: block;
+    
+  }
+  .container-options{
     display: none;
   }
 }
