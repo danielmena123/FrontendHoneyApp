@@ -4,9 +4,11 @@ import { Router } from '@angular/router';
 import { UsuarioAccess } from 'src/app/models/access';
 import { Comentarios, Comentario_C } from 'src/app/models/comentarios';
 import { likes, likes_C } from 'src/app/models/likes';
+import { NotificacionesForo } from 'src/app/models/Notificaciones';
 import { ComentariosService } from 'src/app/services/comentarios.service';
 import { DataService } from 'src/app/services/data.service';
 import { SecurityService } from 'src/app/services/security.service';
+import { SignalrcustomService } from 'src/app/services/signalrcustom.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -25,13 +27,17 @@ export class ComentariosComponent implements OnInit {
   commentForm!: FormGroup;
   comentario!: Comentario_C;
   comment: Comentarios;
-  comentariosId!: number;
+  comentariosId: number;
+  usuarioComentarioId: number;
+  notificacion: NotificacionesForo;
   @ViewChild('div') div!: ElementRef;
 
   @Input() publicacionesId!: number;
+  @Input() usuarioPublicacion: number;
 
   constructor(
     private _builder: FormBuilder, 
+    private signalr: SignalrcustomService,
     private comentariosService: ComentariosService,
     private dataService: DataService,
     private securityServices: SecurityService
@@ -75,6 +81,7 @@ export class ComentariosComponent implements OnInit {
   }
 
   enviarComentario(){
+
     this.comentario = {
       descripcion: this.commentForm.value.Descripcion,
       publicacionesId: this.publicacionesId,
@@ -82,7 +89,28 @@ export class ComentariosComponent implements OnInit {
     }
 
     const url = `${this.apiURL}/Comentarios/`;
-    this.dataService.Post<Comentario_C>(url, this.comentario).subscribe(res => {
+    this.dataService.Post<Comentarios>(url, this.comentario).subscribe(res => {
+
+      //Agregar al grupo
+      var room = "Comentario" + res.body?.comentariosId;      
+      this.signalr.hubConnection.invoke("AddToGroup", room);
+      
+      if(this.usuario.usuariosId != this.usuarioPublicacion){
+        const urlNoti = `${this.apiURL}/Notificaciones`;
+
+        this.notificacion = {
+          descripcion: `${this.usuario.nombreUsuario} Comento tu Publicacion`,
+          referenciaId: this.publicacionesId,
+          tipo_NotificacionesId: 1,
+          usuarioReceptorId: this.usuarioPublicacion,
+          usuariosId: this.usuario.usuariosId
+        }
+
+        this.dataService.Post(urlNoti, this.notificacion).subscribe(res => {
+
+        });
+      }
+
       this.CargarDatos();
       this.commentForm.reset();
     },
@@ -91,9 +119,10 @@ export class ComentariosComponent implements OnInit {
     })
   }
 
-  openRespuestas(i:any, c: number, activo: boolean){
+  openRespuestas(i:any, c: Comentarios, activo: boolean){
     if(!activo){
-      this.comentariosId = c;
+      this.comentariosId = c.comentariosId;
+      this.usuarioComentarioId = c.usuariosId;
       this.comentarios.forEach(element => {
         element.activo = false;
       })
@@ -124,10 +153,25 @@ export class ComentariosComponent implements OnInit {
       usuariosId: this.usuario.usuariosId
     }
 
-    const url = `${this.apiURL}/Comentarios/Likes`;
+    const url = `${this.apiURL}/Likes/Comentarios`;
     this.dataService.Post<likes>(url, this.like).subscribe(res => {
       if(res.body != null){
         this.comentarios[index].likes = res.body.numlikes
+
+        if(this.usuario.usuariosId != this.comentarios[index].usuariosId){
+          const urlNoti = `${this.apiURL}/Notificaciones/Likes`;
+          this.notificacion = {
+            descripcion: `A ${this.usuario.nombreUsuario} le gusto tu Comentario`,
+            referenciaId: this.comentarios[index].comentariosId,
+            tipo_NotificacionesId: 5,
+            usuarioReceptorId: this.comentarios[index].usuariosId,
+            usuariosId: this.usuario.usuariosId
+          }
+
+          this.dataService.Post(urlNoti, this.notificacion).subscribe( msg => {
+            
+          });
+        }
       }
     },err => {
         console.log(err);

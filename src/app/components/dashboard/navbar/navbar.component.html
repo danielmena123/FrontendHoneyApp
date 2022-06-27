@@ -6,27 +6,36 @@
     <div class="container-options">
       
          
-            <a class="active-top" aria-current="page" [routerLink]="['/dashboard/']">
+            <a class="active-top" aria-current="page" [routerLink]="['/dashboard/']" (click)="CargarPublicaciones()">
 
-              <mat-icon>home</mat-icon>
+              <mat-icon [matBadgeHidden]="newPublication" matBadge="1+" matBadgeColor="warn" matBadgeSize="small">home</mat-icon>
               <p> Home</p>
             </a>
         
         
             <a class="" aria-current="page" [routerLink]="['/dashboard/chats']">
-              <mat-icon [matBadgeHidden]="hidden" matBadge="{{messageRead.toString() | slice:0:1}}{{messageRead.toString().length > 1 ? '+': ''}}" matBadgeColor="warn" matBadgeSize="small">chat</mat-icon>
+              <mat-icon [matBadgeHidden]="hidden" matBadge="{{messageRead.toString() | slice:0:1}}{{messageRead.toString().length > 1 ? '1+': ''}}" matBadgeColor="warn" matBadgeSize="small">chat</mat-icon>
               <p> Chats</p>
             </a>
           <a class="" aria-current="page" [routerLink]="['/dashboard/ayuda']">
             <mat-icon>info</mat-icon>
             <p> Ayuda</p>
           </a>
-        
+
+          <a class="" aria-current="page" [routerLink]="['/dashboard/']" (click)="RefrescarNotificaciones()">
+            <mat-icon [matBadgeHidden]="newNotifyPer" matBadge="{{notificationRead.toString() | slice:0:1}}{{notificationRead.toString().length > 1 ? '1+': ''}}" matBadgeColor="warn" matBadgeSize="small">{{icono}}</mat-icon>
+            <p>Notificaciones</p>
+          </a>
+
+          <!-- <a *ngIf="newNotifyPer==true" class="" aria-current="page" (click)="Notificaciones()">
+            <mat-icon matBadge="1+" matBadgeColor="warn" matBadgeSize="small">notifications_active</mat-icon>
+            <p>Notificaciones</p>
+          </a> -->
         
          
-        
+          
     </div>
-    <div class="container-perfil">
+    <div class="container-perfil d-flex">      
       <div class="dropdown">
         <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-person-circle"></i>
           {{usuario.nombreUsuario}}

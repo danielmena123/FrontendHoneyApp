@@ -15,3 +15,7 @@
 .header-publicaction{
     justify-content: space-between;
 }
+.spiner{
+    margin: 0 auto;
+    color: white;
+}

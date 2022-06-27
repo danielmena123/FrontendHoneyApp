@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UsuarioAccess } from 'src/app/models/access';
-import { Publicacion_C } from 'src/app/models/publicaciones';
+import { Publicaciones, Publicacion_C } from 'src/app/models/publicaciones';
 import { DataService } from 'src/app/services/data.service';
 import { ModalesService } from 'src/app/services/modales.service';
 import { PublicacionesService } from 'src/app/services/publicaciones.service';
@@ -53,14 +53,21 @@ export class ModalPComponent implements OnInit {
       usuariosId: this.usuario.usuariosId
     }
 
-    this.signalr.NewPublicacion();
     const url = `${this.apiURL}/Publicaciones`;
-    this.dataService.Post<Publicacion_C>(url, this.publicacion).subscribe(res => {
+    this.dataService.Post<Publicaciones>(url, this.publicacion).subscribe(res => {
       if(res != null){
+
+        //agregar a grupo
+        var room = "Publicacion" + res.body?.publicacionesId;       
+        this.signalr.hubConnection.invoke("AddToGroup", room);
+
+        //enviar notificacion
+        this.signalr.NewPublicacion();
+
         this.modal.$refres.emit(true);
         this.closeModal();
       }
-    })
+    });
   }
 
   CargarUsuario(){

@@ -8,4 +8,6 @@ export class NotificacionesService {
   constructor() { }
 
   $refrescarMensajes = new EventEmitter<any>();
+  $refrescarNotificaciones= new EventEmitter<any>();
+  $CargarPublicaciones = new EventEmitter<any>();
 }

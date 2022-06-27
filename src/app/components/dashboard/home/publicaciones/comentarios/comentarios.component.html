@@ -26,14 +26,14 @@
                     <mat-divider inset></mat-divider>  
                     <div class="container-buttons">
                         <button mat-button color="primary" (click)="addLike(c.comentariosId, i)">{{c.likes}} | <mat-icon>thumb_up</mat-icon> Me gusta</button>
-                        <button mat-button color="primary" (click)="openRespuestas(i, c.comentariosId, c.activo)"><mat-icon>reply</mat-icon> Responder</button>
+                        <button mat-button color="primary" (click)="openRespuestas(i, c, c.activo)"><mat-icon>reply</mat-icon> Responder</button>
                         <button mat-button disabled *ngIf="c.shortime == true">{{c.fecha | date:'shortTime'}}</button>     
                         <button mat-button disabled *ngIf="c.shortime == false">{{c.fecha | date:'mediumDate'}}</button>          
                     </div>   
                     <mat-divider inset></mat-divider>
                 </mat-card-content>
                 <mat-card-actions *ngIf="c.activo == true">
-                    <app-respuestas [comentariosId]="comentariosId"></app-respuestas>
+                    <app-respuestas [comentariosId]="comentariosId" [usuarioComentarioId]="usuarioComentarioId"></app-respuestas>
                 </mat-card-actions>
             </mat-card>
         </div>        

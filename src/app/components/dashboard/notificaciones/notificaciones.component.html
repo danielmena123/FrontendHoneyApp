@@ -9,22 +9,11 @@
           </mat-card-content>
           <!--Ejemplo de notifiaciones -->
           <div class="notificacion-scroll">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem ab error optio numquam. Possimus iusto dolores labore repellat est, accusamus eos dolorem quasi ipsa incidunt amet, deleniti facere tempora perferendis!</p>
-            <hr/>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem ab error optio numquam. Possimus iusto dolores labore repellat est, accusamus eos dolorem quasi ipsa incidunt amet, deleniti facere tempora perferendis!</p>
-            <hr/>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem ab error optio numquam. Possimus iusto dolores labore repellat est, accusamus eos dolorem quasi ipsa incidunt amet, deleniti facere tempora perferendis!</p>
-            <hr/>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem ab error optio numquam. Possimus iusto dolores labore repellat est, accusamus eos dolorem quasi ipsa incidunt amet, deleniti facere tempora perferendis!</p>
-            <hr/>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem ab error optio numquam. Possimus iusto dolores labore repellat est, accusamus eos dolorem quasi ipsa incidunt amet, deleniti facere tempora perferendis!</p>
-            <hr/>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem ab error optio numquam. Possimus iusto dolores labore repellat est, accusamus eos dolorem quasi ipsa incidunt amet, deleniti facere tempora perferendis!</p>
-            <hr/>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem ab error optio numquam. Possimus iusto dolores labore repellat est, accusamus eos dolorem quasi ipsa incidunt amet, deleniti facere tempora perferendis!</p>
+            <div class="d-flex content-notifiacion" *ngFor="let n of notificaciones">
+              <p>{{n.descripcion}}</p><p>{{n.fecha | date: 'shortTime'}}</p>
+              <hr/>
+            </div>            
           </div>
-          
-          <hr/>
         </mat-card>
     </div>    
 </div>

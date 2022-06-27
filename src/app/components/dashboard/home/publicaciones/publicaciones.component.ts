@@ -1,10 +1,13 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ThemePalette } from '@angular/material/core';
 import { Subscription } from 'rxjs';
 import { UsuarioAccess } from 'src/app/models/access';
 import { likes, likes_C } from 'src/app/models/likes';
+import { NotificacionesForo } from 'src/app/models/Notificaciones';
 import { Publicaciones } from 'src/app/models/publicaciones';
 import { DataService } from 'src/app/services/data.service';
 import { ModalesService } from 'src/app/services/modales.service';
+import { NotificacionesService } from 'src/app/services/notificaciones.service';
 import { PublicacionesService } from 'src/app/services/publicaciones.service';
 import { SecurityService } from 'src/app/services/security.service';
 import { environment } from 'src/environments/environment';
@@ -18,16 +21,28 @@ export class PublicacionesComponent implements OnInit, OnDestroy {
 
   private apiURL = environment.apiURL;
 
-  usuario!: UsuarioAccess;
+  //usuario logeodo
+  usuario: UsuarioAccess;
   publicacion: Publicaciones;
-  publicaciones!: Publicaciones[];
+
+  //variables de Datos
+  publicaciones: Publicaciones[];
+  notificacion: NotificacionesForo;
+  publicacionesId: number;
+  usuarioPublicacion: number;
+  like: likes_C; 
+
+  //variables de cambio
   modalSwitch: boolean = false;
-  publicacionesId!: number;
-  like!: likes_C; 
-  subRef$!: Subscription;
+  subRef$: Subscription;  
+
+  //mat spiner
+  loading = false;
+  color: ThemePalette = 'accent';
 
   constructor(
     private modal: ModalesService, 
+    private notificacionesService: NotificacionesService,
     private publicacionesService: PublicacionesService,
     private securityServices: SecurityService,
     private dataService: DataService,
@@ -47,6 +62,15 @@ export class PublicacionesComponent implements OnInit, OnDestroy {
         this.modalSwitch = false;
         this.CargarDatos();
       }
+    });
+    this.notificacionesService.$CargarPublicaciones.subscribe(res => {
+      if(res == true){
+        this.loading = true!
+        setTimeout(() => {
+          this.CargarDatos();
+          this.loading = false;
+        }, (1000))        
+      }
     })
   }
 
@@ -62,9 +86,10 @@ export class PublicacionesComponent implements OnInit, OnDestroy {
     this.usuario = data;
   }
 
-  openComentarios(i:any, p: number, a: boolean){
+  openComentarios(i:any, p: Publicaciones, a: boolean){
     if(!a){
-      this.publicacionesId = p;
+      this.publicacionesId = p.publicacionesId;
+      this.usuarioPublicacion = p.usuariosId;
       this.publicaciones.forEach(element => {
         element.activo = false;
       })
@@ -95,14 +120,29 @@ export class PublicacionesComponent implements OnInit, OnDestroy {
       usuariosId: this.usuario.usuariosId
     }
 
-    const url = `${this.apiURL}/Publicaciones/Likes`;
+    const url = `${this.apiURL}/Likes/Publicaciones`;
     this.dataService.Post<likes>(url, this.like).subscribe(res => {
       if(res.body != null){
         this.publicaciones[index].likes = res.body.numlikes
+
+        if(this.usuario.usuariosId != this.publicaciones[index].usuariosId){
+          const urlNoti = `${this.apiURL}/Notificaciones/Likes`;
+          this.notificacion = {
+            descripcion: `A ${this.usuario.nombreUsuario} le gusto tu Publicacion`,
+            referenciaId: this.publicaciones[index].publicacionesId,
+            tipo_NotificacionesId: 4,
+            usuarioReceptorId: this.publicaciones[index].usuariosId,
+            usuariosId: this.usuario.usuariosId
+          }       
+
+          this.dataService.Post(urlNoti, this.notificacion).subscribe( msg => {
+            
+          });
+        }
       }
     },err => {
         console.log(err);
-    })
+    });
   }
 
   ngOnDestroy(): void {

@@ -21,7 +21,3 @@ export interface Chats{
     noLeidos: number,   
     lastusuarioId: number; 
 }
-
-export interface Salas {
-    rooms: string
-}

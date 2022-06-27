@@ -15,6 +15,7 @@ export class SignalrcustomService {
   emitirMensaje: EventEmitter<Mensajes> = new EventEmitter();
   emitirChat: EventEmitter<Chats> = new EventEmitter();
   notifyNewPub: EventEmitter<boolean> = new EventEmitter();
+  notificaciones: EventEmitter<boolean> = new EventEmitter();
   connectionEstablished = new EventEmitter<boolean>();
   
   public hubConnection : signalR.HubConnection
@@ -66,6 +67,21 @@ export class SignalrcustomService {
         this.chatService.$refrescarRooms.emit(true);
         this.chatService.$refrescarChats.emit(true);
       }
+    })
+  }
+
+  Notificaciones(): void{
+    this.hubConnection.on('sendNewNotification', (message) => {
+      console.log(JSON.parse(message))
+      if(JSON.parse(message) != null){
+        this.notificaciones.emit(true);
+      }        
+    })
+  }
+
+  NotifyPublicacion(): void {
+    this.hubConnection.on('NotiNewPubli', (res) => {
+      this.notifyNewPub.emit(true);
     })
   }
 
