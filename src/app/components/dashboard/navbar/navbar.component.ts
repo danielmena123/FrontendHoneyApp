@@ -44,6 +44,7 @@ export class NavbarComponent implements OnInit {
      }
 
   ngOnInit(): void {    
+    this.signalr.startConnection();
     this.signalr.RecieveNotificacion();
     this.signalr.RecieveMessage();
     this.signalr.NotifyPublicacion();
@@ -95,7 +96,6 @@ export class NavbarComponent implements OnInit {
     const urlPublicaciones = `${this.apiURL}/Salas/Publicaciones/${this.usuario.usuariosId}`;
     this.dataservice.get<Salas[]>(urlPublicaciones).subscribe(res => {
       res.body!.forEach(item => {
-        console.log(item.rooms);
         this.signalr.hubConnection.invoke("AddToGroup", item.rooms);
       });
     });
@@ -146,6 +146,7 @@ export class NavbarComponent implements OnInit {
   logout(){
     this.securityServices.LogOff();
     this.router.navigate(["/logout"]);
+    this.signalr.CloseConnection();
   }
 
   RefrescarNotificaciones(){

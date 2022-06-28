@@ -8,7 +8,7 @@ import { DataService } from 'src/app/services/data.service';
 import { SecurityService } from 'src/app/services/security.service';
 import { environment } from 'src/environments/environment';
 import { Subscription } from 'rxjs';
-import { Usuario_C } from 'src/app/models/usuarios';
+import { Usuarios, Usuario_C } from 'src/app/models/usuarios';
 import { ThemePalette } from '@angular/material/core';
 
 @Component({
@@ -93,7 +93,7 @@ export class LoginComponent implements OnInit {
     }
 
     const url = `${this.apiURL}/Usuarios`;
-    this.dataService.Post<Usuario_C>(url, this.usuario).subscribe(res => {
+    this.dataService.Post<Usuarios>(url, this.usuario).subscribe(res => {
       if(res != null){
         this.selected.setValue(0);
       }

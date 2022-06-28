@@ -88,14 +88,12 @@ export class MensajesComponent implements OnInit {
 
     //Subscripcion a respuesta de Signalr
     this.signalr.emitirMensaje.subscribe((data) => {
-      if (data.usuariosId != this.usuario.usuariosId) {
         this.chatId = data.chatsId;
         data.shortime = true;
         this.newChat = false;
         this.Mensajes.push(data);
         this.signalr.Rooms();
-        this.notificacionesService.$refrescarMensajes.emit(true);        
-      }      
+        this.notificacionesService.$refrescarMensajes.emit(true);   
     });      
   }
 
@@ -169,13 +167,10 @@ export class MensajesComponent implements OnInit {
         const url_msg = `${this.apiURL}/Mensajes`;
         this.dataService.Post<Mensajes>(url_msg, this.mensaje).subscribe( res => {
           if(res.body != null){
-
-            //agregar nuevo mensaje al listado
-            res.body.shortime = true;
-            this.Mensajes.push(res.body);
-
-            //refrescar el listado de chat y las salas al ususario principal
-            this.chatService.$refrescarChats.emit(true);            
+            
+            var newMessage: Mensajes = res.body;
+            //funcion signalr
+            this.signalr.SendMessage(newMessage, group);          
 
             //refrescar las salas de los demas
             this.signalr.Rooms();
@@ -193,20 +188,17 @@ export class MensajesComponent implements OnInit {
     const url_msg = `${this.apiURL}/Mensajes`;
     this.dataService.Post<Mensajes>(url_msg, this.mensaje).subscribe( res => {
       if(res.body){
-        const newMessage: Mensajes = res.body
+
+        //variables hacia signalr
+        var newMessage: Mensajes = res.body;
+        var group = "Chat" + newMessage.chatsId;
+        //funcion signalr
+        this.signalr.SendMessage(newMessage, group);
+        //cambiar el estado de los msj
         let anything: any;
         const url_see1_msg = `${this.apiURL}/Mensajes/${res.body.chatsId}/${this.usuario.usuariosId}`;
-        this.dataService.Put<any>(url_see1_msg, anything).subscribe(res => {
-          //agregar nuevo mensaje al listado
-          newMessage.shortime = true;        
-          this.Mensajes.push(newMessage);
-
-          //refrescar listado de chats
-          this.chatService.$refrescarChats.emit(true);
-          //resetear textarea
-          this.mensajeForm.reset();
-        })
-        
+        this.dataService.Put<any>(url_see1_msg, anything).subscribe(res => {console.log("Exito al guardar")});
+        this.mensajeForm.reset();
       }
     }, err => {
       console.log(err);

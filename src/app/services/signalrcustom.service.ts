@@ -48,6 +48,10 @@ export class SignalrcustomService {
       this.chatService.$refrescarChats.emit(true);      
     })
   }
+
+  SendMessage(mensaje: Mensajes, group: string){
+    this.hubConnection.invoke("SendMessage", JSON.stringify(mensaje), group);
+  }
   
   AddToGroup(groupId: string){
     this.hubConnection.invoke("AddToGroup", groupId);
@@ -85,4 +89,7 @@ export class SignalrcustomService {
     })
   }
 
+  CloseConnection(){
+    this.hubConnection.stop();
+  }
 }
