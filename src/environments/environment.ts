@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiURL: 'https://honeyappservice.azurewebsites.net/api/'
+  apiURL: 'https://honeyappservice.azurewebsites.net/api'
 };
 
 /*
