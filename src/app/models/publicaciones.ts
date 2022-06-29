@@ -5,7 +5,8 @@ export interface Publicaciones{
     estado: number;
     nombreUsuario: string;
     usuariosId: number;
-    likes: number;
+    numLikes: number;
+    userLike: number;
     activo: boolean;
 }
 

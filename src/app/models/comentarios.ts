@@ -4,7 +4,8 @@ export interface Comentarios {
     fecha: Date;
     nombreUsuario: string;
     usuariosId: number;
-    likes: number;
+    numLikes: number;
+    userLike: number;
     activo: boolean;
     shortime: boolean;
 }

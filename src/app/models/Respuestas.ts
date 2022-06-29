@@ -6,7 +6,8 @@ export interface Respuestas{
     comentarioId: number;
     nombreUsuario: string;
     usuariosId: number;
-    likes: number;
+    numLikes: number;
+    userLike: number;
 }
 
 export interface Respuesta_C{

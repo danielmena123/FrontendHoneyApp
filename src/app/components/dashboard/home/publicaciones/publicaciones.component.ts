@@ -75,7 +75,7 @@ export class PublicacionesComponent implements OnInit, OnDestroy {
   }
 
   CargarDatos(){
-    const url = `${this.apiURL}/Publicaciones`;    
+    const url = `${this.apiURL}/Publicaciones/${this.usuario.usuariosId}`;    
     this.subRef$ = this.dataService.get<Publicaciones[]>(url).subscribe(res => {
       this.publicaciones = res.body!;
     })
@@ -123,7 +123,7 @@ export class PublicacionesComponent implements OnInit, OnDestroy {
     const url = `${this.apiURL}/Likes/Publicaciones`;
     this.dataService.Post<likes>(url, this.like).subscribe(res => {
       if(res.body != null){
-        this.publicaciones[index].likes = res.body.numlikes
+        this.publicaciones[index].numLikes = res.body.numlikes
 
         if(this.usuario.usuariosId != this.publicaciones[index].usuariosId){
           const urlNoti = `${this.apiURL}/Notificaciones/Likes`;

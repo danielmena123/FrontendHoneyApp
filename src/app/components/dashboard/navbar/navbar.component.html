@@ -14,7 +14,7 @@
         
         
             <a class="" aria-current="page" [routerLink]="['/dashboard/chats']">
-              <mat-icon [matBadgeHidden]="hidden" matBadge="{{messageRead.toString() | slice:0:1}}{{messageRead.toString().length > 1 ? '1+': ''}}" matBadgeColor="warn" matBadgeSize="small">chat</mat-icon>
+              <mat-icon [matBadgeHidden]="hidden" matBadge="{{messageRead.toString() | slice:0:1}}{{messageRead.toString().length > 1 ? '+': ''}}" matBadgeColor="warn" matBadgeSize="small">chat</mat-icon>
               <p> Chats</p>
             </a>
           <a class="" aria-current="page" [routerLink]="['/dashboard/ayuda']">
@@ -23,7 +23,7 @@
           </a>
 
           <a class="" aria-current="page" [routerLink]="['/dashboard/']" (click)="RefrescarNotificaciones()">
-            <mat-icon [matBadgeHidden]="newNotifyPer" matBadge="{{notificationRead.toString() | slice:0:1}}{{notificationRead.toString().length > 1 ? '1+': ''}}" matBadgeColor="warn" matBadgeSize="small">{{icono}}</mat-icon>
+            <mat-icon [matBadgeHidden]="newNotifyPer" matBadge="{{notificationRead.toString() | slice:0:1}}{{notificationRead.toString().length > 1 ? '+': ''}}" matBadgeColor="warn" matBadgeSize="small">{{icono}}</mat-icon>
             <p>Notificaciones</p>
           </a>
 

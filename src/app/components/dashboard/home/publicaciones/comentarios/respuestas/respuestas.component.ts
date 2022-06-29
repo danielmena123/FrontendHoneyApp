@@ -55,7 +55,7 @@ export class RespuestasComponent implements OnInit {
   }
 
   CargarDatos(){
-    const url = `${this.apiURL}/Respuestas/${this.comentariosId}`
+    const url = `${this.apiURL}/Respuestas/${this.comentariosId}/${this.usuario.usuariosId}`
     this.dataService.get<Respuestas[]>(url).subscribe( res => {
       this.respuestas = res.body!;
     })
@@ -124,7 +124,7 @@ export class RespuestasComponent implements OnInit {
     const url = `${this.apiURL}/Likes/Respuestas`;
     this.dataService.Post<likes>(url, this.like).subscribe(res => {
       if(res.body != null){
-        this.respuestas[index].likes = res.body.numlikes
+        this.respuestas[index].numLikes = res.body.numlikes
         if(this.usuario.usuariosId != this.respuestas[index].usuariosId){
           const urlNoti = `${this.apiURL}/Notificaciones/Likes`;
           this.notificacion = {

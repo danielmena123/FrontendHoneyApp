@@ -65,7 +65,7 @@ export class ComentariosComponent implements OnInit {
 
   CargarDatos(){
 
-    const url = `${this.apiURL}/Comentarios/${this.publicacionesId}`;
+    const url = `${this.apiURL}/Comentarios/${this.publicacionesId}/${this.usuario.usuariosId}`;
     this.dataService.get<Comentarios[]>(url).subscribe(res => {
       this.comentarios = res.body!;
       this.comentarios.forEach(item => {
@@ -156,7 +156,7 @@ export class ComentariosComponent implements OnInit {
     const url = `${this.apiURL}/Likes/Comentarios`;
     this.dataService.Post<likes>(url, this.like).subscribe(res => {
       if(res.body != null){
-        this.comentarios[index].likes = res.body.numlikes
+        this.comentarios[index].numLikes = res.body.numlikes
 
         if(this.usuario.usuariosId != this.comentarios[index].usuariosId){
           const urlNoti = `${this.apiURL}/Notificaciones/Likes`;
