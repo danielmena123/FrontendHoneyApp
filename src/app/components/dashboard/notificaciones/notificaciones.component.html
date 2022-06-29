@@ -10,8 +10,10 @@
           <!--Ejemplo de notifiaciones -->
           <div class="notificacion-scroll">
             <div class="d-flex content-notifiacion" *ngFor="let n of notificaciones">
-              <p>{{n.descripcion}}</p><p>{{n.fecha | date: 'shortTime'}}</p>
-              <hr/>
+              <section>
+                <p>{{n.descripcion}}</p>
+              </section> 
+              <p>{{n.fecha | date: 'shortTime'}}</p>
             </div>            
           </div>
         </mat-card>

@@ -35,7 +35,7 @@ export class PublicacionesComponent implements OnInit, OnDestroy {
   //variables de cambio
   modalSwitch: boolean = false;
   subRef$: Subscription;  
-
+  classLike: boolean = false;
   //mat spiner
   loading = false;
   color: ThemePalette = 'accent';
@@ -58,8 +58,10 @@ export class PublicacionesComponent implements OnInit, OnDestroy {
       }
     });
     this.publicacionesService.$modal.subscribe(res => {
+      console.log("yes")
       if(res == true){
         this.modalSwitch = false;
+        console.log(this.modalSwitch)
         this.CargarDatos();
       }
     });
@@ -72,12 +74,14 @@ export class PublicacionesComponent implements OnInit, OnDestroy {
         }, (1000))        
       }
     })
+
   }
 
   CargarDatos(){
     const url = `${this.apiURL}/Publicaciones`;    
     this.subRef$ = this.dataService.get<Publicaciones[]>(url).subscribe(res => {
       this.publicaciones = res.body!;
+      console.log(this.publicaciones)
     })
   }
 
@@ -115,6 +119,12 @@ export class PublicacionesComponent implements OnInit, OnDestroy {
   }
 
   addLike(publicacionId: number, index: number){
+    if(this.classLike == false){
+      this.classLike = true;
+    }else{
+      this.classLike = false;
+    }
+
     this.like = {
       modelosId: publicacionId,
       usuariosId: this.usuario.usuariosId

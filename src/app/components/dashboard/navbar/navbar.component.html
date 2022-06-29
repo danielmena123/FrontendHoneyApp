@@ -22,11 +22,11 @@
             <p> Ayuda</p>
           </a>
 
-          <a class="" aria-current="page" [routerLink]="['/dashboard/']" (click)="RefrescarNotificaciones()">
+          <a class="" aria-current="page"  (click)="RefrescarNotificaciones()" (click)="mostrarNotificaciones()" [routerLink]="['/dashboard/']">
             <mat-icon [matBadgeHidden]="newNotifyPer" matBadge="{{notificationRead.toString() | slice:0:1}}{{notificationRead.toString().length > 1 ? '1+': ''}}" matBadgeColor="warn" matBadgeSize="small">{{icono}}</mat-icon>
             <p>Notificaciones</p>
           </a>
-
+          
           <!-- <a *ngIf="newNotifyPer==true" class="" aria-current="page" (click)="Notificaciones()">
             <mat-icon matBadge="1+" matBadgeColor="warn" matBadgeSize="small">notifications_active</mat-icon>
             <p>Notificaciones</p>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuarioAccess } from 'src/app/models/access';
 import { ModalesService } from 'src/app/services/modales.service';
+import { NotificacionesService } from 'src/app/services/notificaciones.service';
 import { PublicacionesService } from 'src/app/services/publicaciones.service';
 import { SecurityService } from 'src/app/services/security.service';
 
@@ -13,10 +14,12 @@ export class HomeComponent implements OnInit {
 
   modalSwitch:boolean = false;
   usuario!: UsuarioAccess;
+  mostrarNotificaciones: boolean= false
 
   constructor(
     private modal: ModalesService,
     private securityServices: SecurityService,
+    private notificacionesService: NotificacionesService
     ) { }
 
   ngOnInit(): void {
@@ -24,6 +27,16 @@ export class HomeComponent implements OnInit {
       this.modalSwitch = data
     });
     this.CargarUsuario();
+
+     
+    this.notificacionesService.$MostrarNotificaciones.subscribe(res => {
+      if(res == true && this.mostrarNotificaciones == false){
+        this.mostrarNotificaciones = true;
+        console.log(this.mostrarNotificaciones)
+      }else {
+        this.mostrarNotificaciones = false;
+      }
+    })
   }
 
   openModal(){

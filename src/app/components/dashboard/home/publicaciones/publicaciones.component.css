@@ -19,3 +19,21 @@
     margin: 0 auto;
     color: white;
 }
+
+.like{
+    margin-top: 7px;
+}
+.like-icon {
+    opacity: 0.5;
+}
+.like-icon :active {
+    transform: scale(1.3);
+    /* color:#3f51b5; */
+}
+
+.like-icon__active {
+    opacity: 1;
+}
+.like-icon__active :active {
+    transform: scale(1.3);
+}

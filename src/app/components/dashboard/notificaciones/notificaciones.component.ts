@@ -28,7 +28,7 @@ export class NotificacionesComponent implements OnInit {
     this.CargarUsuario();
     this.CargarDatos();
     this.notificacionesService.$refrescarNotificaciones.subscribe(res => {
-      if(res == true){
+      if(res == true){        
         this.CargarUsuario();
         this.CargarDatos();
       }
