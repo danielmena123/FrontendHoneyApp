@@ -44,7 +44,6 @@ export class NavbarComponent implements OnInit {
      }
 
   ngOnInit(): void {    
-    this.signalr.startConnection();
     this.signalr.RecieveNotificacion();
     this.signalr.RecieveMessage();
     this.signalr.NotifyPublicacion();
