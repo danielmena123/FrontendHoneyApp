@@ -9,5 +9,6 @@ export class NotificacionesService {
 
   $refrescarMensajes = new EventEmitter<any>();
   $refrescarNotificaciones= new EventEmitter<any>();
+  $MostrarNotificaciones= new EventEmitter<any>();
   $CargarPublicaciones = new EventEmitter<any>();
 }
