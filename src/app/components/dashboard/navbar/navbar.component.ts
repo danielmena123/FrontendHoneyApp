@@ -153,4 +153,7 @@ export class NavbarComponent implements OnInit {
     this.notificacionesService.$refrescarNotificaciones.emit(true);
   }
 
+  mostrarNotificaciones(){
+    this.notificacionesService.$MostrarNotificaciones.emit(true);
+  }
 }

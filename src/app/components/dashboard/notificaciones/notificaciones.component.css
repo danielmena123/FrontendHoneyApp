@@ -1,7 +1,8 @@
 .container-notifications{
-  position: relative;
+    position: relative;
 
 }
+
 .container-notifications .notificacion-items{
     position: absolute;
     width: 100%;
@@ -32,7 +33,20 @@
         
     }
 }
-
+.content-notifiacion p{
+    margin: 0px;
+    padding: 0px;
+}
 .content-notifiacion{
-    justify-content: space-between;
+    flex-direction: column;
+    width: 100%;
+    padding: 7px;
+    padding-left: 17px;
+    border-bottom: solid grey 1px;
+    margin-bottom: 10px;
+}
+
+.content-notifiacion:hover {
+    transform: scale(1.02);
+    background-color: #eaeaea;
 }
