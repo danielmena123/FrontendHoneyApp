@@ -1,23 +1,21 @@
 <div class="container container-notifications">
-    <div class=" notificacion-items">
-    
-        <mat-card class="example-card">
-          <mat-card-title><h3>NOTIFICACIONES</h3></mat-card-title>
-            <hr/>
-          <mat-card-content>
-           
-          </mat-card-content>
-          <!--Ejemplo de notifiaciones -->
-          <div class="notificacion-scroll">
-            <div class="d-flex content-notifiacion" *ngFor="let n of notificaciones">
-              <section>
-                <p>{{n.descripcion}}</p>
-              </section> 
-              <p>{{n.fecha | date: 'shortTime'}}</p>
-            </div>            
-          </div>
-        </mat-card>
-    </div>    
-</div>
+  <div class=" notificacion-items">
 
-  
+    <mat-card class="example-card mat-elevation-z8">
+      <mat-card-title>
+        <h3>NOTIFICACIONES</h3>
+      </mat-card-title>
+      <mat-card-content>
+        <div class="notificacion-scroll">
+          <div class="d-flex content-notifiacion" *ngFor="let n of notificaciones">
+            <section>
+              <p>{{n.descripcion}}</p>
+            </section>
+            <p>{{n.fecha | date: 'shortTime'}}</p>
+          </div>
+        </div>
+      </mat-card-content>
+      <!--Ejemplo de notifiaciones -->
+    </mat-card>
+  </div>
+</div>
