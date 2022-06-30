@@ -25,7 +25,7 @@
             <p>{{p.descripcion}}</p>      
             <mat-divider inset></mat-divider>  
             <div class="container-buttons">
-                <button mat-button color="primary" (click)="addLike(p.publicacionesId, i)"  >{{p.numLikes}} | <span  [ngClass]="{'like-icon':  classLike==false, 'like-icon__active': classLike== true}"><mat-icon class="like" >thumb_up</mat-icon></span> Me gusta</button>
+                <button mat-button color="primary" (click)="addLike(p.publicacionesId, i)"  >{{p.numLikes}} | <span  [ngClass]="{'like-icon':  p.userLike==0, 'like-icon__active': p.userLike ==1}"><mat-icon class="like" >thumb_up</mat-icon></span> Me gusta</button>
                 <button mat-button color="primary" (click)="openComentarios(i, p, p.activo)"><mat-icon>comment</mat-icon> Comentar</button>
                 <button mat-button color="primary"><mat-icon>share</mat-icon> Compartir</button>                    
             </div>   
