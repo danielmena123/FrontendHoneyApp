@@ -35,7 +35,7 @@ export class PublicacionesComponent implements OnInit, OnDestroy {
   //variables de cambio
   modalSwitch: boolean = false;
   subRef$: Subscription;  
-  classLike: boolean = false;
+  classLike: number;
   //mat spiner
   loading = false;
   color: ThemePalette = 'accent';
@@ -81,7 +81,6 @@ export class PublicacionesComponent implements OnInit, OnDestroy {
     const url = `${this.apiURL}/Publicaciones/${this.usuario.usuariosId}`;    
     this.subRef$ = this.dataService.get<Publicaciones[]>(url).subscribe(res => {
       this.publicaciones = res.body!;
-      console.log(this.publicaciones)
     })
   }
 
@@ -119,21 +118,21 @@ export class PublicacionesComponent implements OnInit, OnDestroy {
   }
 
   addLike(publicacionId: number, index: number){
-    if(this.classLike == false){
-      this.classLike = true;
-    }else{
-      this.classLike = false;
-    }
 
     this.like = {
       modelosId: publicacionId,
-      usuariosId: this.usuario.usuariosId
+      usuariosId: this.usuario.usuariosId,
     }
 
     const url = `${this.apiURL}/Likes/Publicaciones`;
     this.dataService.Post<likes>(url, this.like).subscribe(res => {
       if(res.body != null){
-        this.publicaciones[index].numLikes = res.body.numlikes
+        this.publicaciones[index].numLikes = res.body.numlikes;
+        if(this.publicaciones[index].userLike == 0){
+          this.publicaciones[index].userLike = 1
+        }else {
+          this.publicaciones[index].userLike = 0
+        }
 
         if(this.usuario.usuariosId != this.publicaciones[index].usuariosId){
           const urlNoti = `${this.apiURL}/Notificaciones/Likes`;
