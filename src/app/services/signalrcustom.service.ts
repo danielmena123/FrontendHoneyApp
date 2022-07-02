@@ -88,8 +88,5 @@ export class SignalrcustomService {
       this.notifyNewPub.emit(true);
     })
   }
-
-  CloseConnection(){
-    this.hubConnection.stop();
-  }
+  
 }

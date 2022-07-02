@@ -23,8 +23,7 @@ export class DashboardComponent implements OnDestroy {
       (isAuth) => {
         this.IsAuthenticated = isAuth;
       }
-    );
-    this.signalr.startConnection();
+    );    
   }
 
   ngOnDestroy(): void {

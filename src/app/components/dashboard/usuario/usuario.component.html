@@ -1,45 +1,67 @@
-<div class="container">
-    <div class="row">
-        <div class="content-user">
-            <mat-card class="card-usuario">
-                <mat-card-content>
-                    <form [formGroup]="userForm" (ngSubmit)="Actualizar()">
-                        <mat-card-title><h3><strong>Datos Personales</strong></h3></mat-card-title>
-                        <mat-card-subtitle><h4>{{fecha | date: 'fullDate'}}</h4></mat-card-subtitle>
-                        <mat-form-field class="ancho" appearance="fill">
-                            <mat-label class="text-primary">Nombres</mat-label>
-                            <input formControlName="Nombres" matInput>
-                          </mat-form-field>
-                          <mat-form-field class="ancho" appearance="fill">
-                            <mat-label class="text-primary">Apellidos</mat-label>
-                            <input formControlName="Apellidos" matInput>
-                          </mat-form-field>
-                          <mat-form-field class="ancho" appearance="fill">
-                            <mat-label class="text-primary">Nombre Usuario</mat-label>
-                            <input formControlName="NombreUsuario" matInput>
-                          </mat-form-field>
-                          <mat-form-field class="ancho" appearance="fill">
-                            <mat-label class="text-primary">Correo Electronico</mat-label>
-                            <input formControlName="CorreoElectronico" matInput>
-                          </mat-form-field>
-                          <mat-form-field class="ancho" appearance="fill">
-                            <mat-label class="text-primary">Escriba su Contraseña Actual</mat-label>
-                                <input matInput [type]="hide ? 'password' : 'text'" formControlName="ContraseñaAnterior">
-                                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                            </button>
-                          </mat-form-field>
-                          <mat-form-field class="ancho" appearance="fill">
-                            <mat-label class="text-primary">Escriba su Nueva Contraseña</mat-label>
-                                <input matInput [type]="hidetwo ? 'password' : 'text'" formControlName="Contraseña">
-                                <button mat-icon-button matSuffix (click)="hidetwo = !hidetwo" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidetwo">
-                                <mat-icon>{{hidetwo ? 'visibility_off' : 'visibility'}}</mat-icon>
-                            </button>
-                          </mat-form-field>
-                          <button class="ancho" mat-raised-button color="primary" [disabled]="userForm.invalid"><mat-icon>manage_accounts</mat-icon> Actualizar</button>     
-                    </form>
-                </mat-card-content>
-            </mat-card>
-        </div>
-    </div>
+<div class="content-user">
+  <mat-card class="card-usuario">
+      <mat-card-content>
+        <div class="header-tittle">
+          <div>
+            <mat-card-title><h3><strong>Bienvendio a tu perfil {{this.datospersonalesForm.value.NombreUsuario.toString()}} !!</strong></h3></mat-card-title>
+            <mat-card-subtitle><h4>{{fecha | date: 'fullDate'}}</h4></mat-card-subtitle>
+          </div>          
+          <img [src]="this.contactoForm.value.URL" class="img-fluid img-user">
+        </div>                
+        <mat-tab-group>
+          <mat-tab label="Datos Personales">
+            <form [formGroup]="datospersonalesForm" (ngSubmit)="ActualizarDatosPersonales()">
+              <mat-form-field class="ancho" appearance="fill">
+                <mat-label class="text-primary">Nombres</mat-label>
+                <input formControlName="Nombres" matInput>
+              </mat-form-field>
+              <mat-form-field class="ancho" appearance="fill">
+                <mat-label class="text-primary">Apellidos</mat-label>
+                <input formControlName="Apellidos" matInput>
+              </mat-form-field>
+              <mat-form-field class="ancho" appearance="fill">
+                <mat-label class="text-primary">Nombre Usuario</mat-label>
+                <input formControlName="NombreUsuario" matInput maxlength="12">
+              </mat-form-field>
+              <button class="ancho" mat-raised-button color="primary" [disabled]="datospersonalesForm.invalid"><mat-icon>manage_accounts</mat-icon> Actualizar</button>
+            </form>
+          </mat-tab>
+          <mat-tab label="Seguridad">
+            <form [formGroup]="seguridadForm" (ngSubmit)="ActualizarSeguridad()">
+              <mat-form-field class="ancho" appearance="fill">
+                <mat-label class="text-primary">Escriba su Contraseña Actual</mat-label>
+                    <input matInput [type]="hide ? 'password' : 'text'" formControlName="ContraseñaAnterior">
+                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+              </mat-form-field>
+              <mat-form-field class="ancho" appearance="fill">
+                <mat-label class="text-primary">Escriba su Nueva Contraseña</mat-label>
+                    <input matInput [type]="hidetwo ? 'password' : 'text'" formControlName="Contraseña">
+                    <button mat-icon-button matSuffix (click)="hidetwo = !hidetwo" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidetwo">
+                    <mat-icon>{{hidetwo ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+              </mat-form-field>
+              <button class="ancho" mat-raised-button color="primary" [disabled]="seguridadForm.invalid"><mat-icon>manage_accounts</mat-icon> Actualizar</button>
+            </form>
+          </mat-tab>
+          <mat-tab label="Contacto">
+            <form [formGroup]="contactoForm" (ngSubmit)="ActualizarContacto($event)">
+              <mat-form-field class="ancho" appearance="fill">
+                <mat-label class="text-primary">Correo Electronico</mat-label>
+                <input formControlName="CorreoElectronico" matInput>
+              </mat-form-field>
+              <mat-form-field class="ancho">
+                <mat-label>Subir o Cambiar Foto de Perfil</mat-label>
+                <ngx-mat-file-input formControlName="URL" [accept]="'.jpg, png, jpeg'" (change)="mostrarImagen($event)"></ngx-mat-file-input>
+                <mat-icon matSuffix>folder</mat-icon>
+              </mat-form-field>
+              
+              <img *ngIf="imagen != undefined" [src]="imagen" class="img-fluid mb-3">
+              <button class="ancho" mat-raised-button color="primary" [disabled]="contactoForm.invalid"><mat-icon>manage_accounts</mat-icon> Actualizar</button>
+            </form>
+          </mat-tab>
+        </mat-tab-group>
+      </mat-card-content>
+  </mat-card>
 </div>
