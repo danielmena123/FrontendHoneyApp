@@ -91,7 +91,7 @@ export class MensajesComponent implements OnInit {
         this.chatId = data.chatsId;
         data.shortime = true;
         this.newChat = false;
-        this.Mensajes.push(data);
+        this.CargarDatos();
         this.signalr.Rooms();
         this.notificacionesService.$refrescarMensajes.emit(true);   
     });      
