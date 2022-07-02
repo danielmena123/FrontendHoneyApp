@@ -31,7 +31,8 @@ export class StorageService {
     if(data != null){
       let usuario: UsuarioAccess = {
         usuariosId: parseFloat(JSON.parse(window.atob(data.split('.')[1]))["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"]),
-        nombreUsuario: JSON.parse(window.atob(data.split('.')[1]))["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"]        
+        nombreUsuario: JSON.parse(window.atob(data.split('.')[1]))["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"],
+        url: JSON.parse(window.atob(data.split('.')[1]))["http://schemas.microsoft.com/ws/2008/06/identity/claims/userdata"]
       }
       return usuario;
     }
