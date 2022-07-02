@@ -145,7 +145,6 @@ export class NavbarComponent implements OnInit {
   logout(){
     this.securityServices.LogOff();
     this.router.navigate(["/logout"]);
-    this.signalr.CloseConnection();
   }
 
   RefrescarNotificaciones(){

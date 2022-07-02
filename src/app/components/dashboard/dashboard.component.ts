@@ -8,7 +8,7 @@ import { SignalrcustomService } from 'src/app/services/signalrcustom.service';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent implements OnDestroy, OnInit {
+export class DashboardComponent implements OnDestroy {
 
   IsAuthenticated = false;
   title = 'FrontEnd';
@@ -24,10 +24,6 @@ export class DashboardComponent implements OnDestroy, OnInit {
         this.IsAuthenticated = isAuth;
       }
     );    
-  }
-
-  ngOnInit(): void {
-    this.signalr.startConnection();
   }
 
   ngOnDestroy(): void {
