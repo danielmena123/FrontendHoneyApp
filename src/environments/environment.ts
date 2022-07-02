@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiURL:'https://localhost:5001/api',
+  apiURL:'https://honeyappservice.azurewebsites.net/api',
   firebaseConfig: {
     apiKey: "AIzaSyDmZpkS0TQ7zVYHlkwQRIESFkSBarKbxys",  
     authDomain: "honeyapp-da6ed.firebaseapp.com",  
@@ -18,6 +18,7 @@ export const environment = {
 
 /*
  * apiURL: 'https://localhost:5001/api'
+ * apiURL:'https://honeyappservice.azurewebsites.net/api',
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
  *
