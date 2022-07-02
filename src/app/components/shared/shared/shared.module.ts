@@ -12,7 +12,7 @@ import {MatSortModule} from '@angular/material/sort';
 import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatSelectModule} from '@angular/material/select';
-
+import {MatDialogModule} from '@angular/material/dialog';
 
 //Angular Material
 import {MatMenuModule} from '@angular/material/menu';
@@ -54,6 +54,7 @@ import {MatBadgeModule} from '@angular/material/badge';
     MatTabsModule,
     MatMenuModule,
     MatBadgeModule,
+    MatDialogModule
   ],
   exports:[
     CommonModule,
@@ -78,7 +79,8 @@ import {MatBadgeModule} from '@angular/material/badge';
     MatListModule,
     MatTabsModule,
     MatMenuModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatDialogModule
   ]
 })
 export class SharedModule { }

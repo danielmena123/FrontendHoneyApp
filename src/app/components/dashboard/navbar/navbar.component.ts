@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { UsuarioAccess } from 'src/app/models/access';
 import { Notificaciones, NotificacionesNoLeidas } from 'src/app/models/Notificaciones';
@@ -10,14 +10,20 @@ import { SecurityService } from 'src/app/services/security.service';
 import { SignalrcustomService } from 'src/app/services/signalrcustom.service';
 import { environment } from 'src/environments/environment';
 
+import {MatMenuTrigger} from '@angular/material/menu';
+import {MatDialog} from '@angular/material/dialog';
+import { NotificacionesComponent } from '../notificaciones/notificaciones.component';
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+  @ViewChild('menuTrigger') menuTrigger: MatMenuTrigger;
 
   private apiURL = environment.apiURL;
+  mostrarNotificacion: boolean= false
 
   //Variable de Datos
   usuario!: UsuarioAccess;
@@ -40,6 +46,7 @@ export class NavbarComponent implements OnInit {
     private chatService: ChatsService,
     private notificacionesService: NotificacionesService,
     private dataservice: DataService,
+    public dialog: MatDialog
     ) {
      }
 
@@ -76,6 +83,22 @@ export class NavbarComponent implements OnInit {
         this.CargarNotificaciones();
       }
     })
+
+         
+    this.notificacionesService.$MostrarNotificaciones.subscribe(res => {
+      if(res == true && this.mostrarNotificacion == false){
+        this.mostrarNotificacion = true;
+        console.log(this.mostrarNotificacion)
+      }else {
+        this.mostrarNotificacion = false;
+      }
+    })
+  }
+
+  openDialog() {
+    
+     let dialogRef =  this.dialog.open(NotificacionesComponent);
+
   }
 
   //Cargar Usuario

@@ -11,7 +11,7 @@
   align-items: center;
   padding: 8px 15px;
 }
-.contaier-log a{
+.contaier-log a,span{
   color: var(--color-neutro);
 }
 .container-options{
@@ -21,7 +21,7 @@
   padding-top: 4px;
 }
 
-.container-options  a{
+.container-options  a,span{
  color: var(--color-secundario) ;
   text-align: center;
  font-size: 1rem;
@@ -31,6 +31,9 @@
 .container-options a p{
   padding-top: 3px;
 }
+.container-options span {
+  cursor: pointer;
+}
 .active-top{
   color: var(--color-terciario) !important;
   
@@ -38,6 +41,10 @@
 .container-options a:hover{
   color: var(--color-terciario) !important;
 }
+.container-options span:hover{
+  color: var(--color-terciario) !important;
+}
+
 
 .example-spacer {
   flex: 1 1 auto;
@@ -110,6 +117,16 @@ background: var(--color-secundario) !important;
   padding: 8px;
   
 }
+.notifiaciones {
+  position: relative;
+}
+.bloq-notificacion {
+  position: absolute;
+  top: 74px;
+  right: 0px;
+  z-index: 10;
+}
+
 
 
 @media (max-width: 600px){

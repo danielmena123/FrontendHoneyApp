@@ -1,25 +1,18 @@
-.container-notifications{
+
+ .example-card{
+
+    width: 380px;
+    max-height:700px;
+    /* margin-left: -154px;
+    margin-top: 35px; */
+    overflow-y: auto;
+    border-radius: 10px;
+}
+
+ .notificacion-scroll{
     position: relative;
 }
 
-.container-notifications .notificacion-items{
-    position: absolute;
-    width: 100%;
-}
-
-.container-notifications .notificacion-items .example-card{
-    position: fixed;
-    width: 26%;
-    max-height:400px;
-    margin-left: -204px;
-    margin-top: -63px;
-
-    overflow-y: scroll;
-}
-
-.notificacion-scroll{
-    position: relative;
-}
 
 @media (max-width: 990px){
    

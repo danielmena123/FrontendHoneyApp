@@ -28,15 +28,7 @@ export class HomeComponent implements OnInit {
     });
     this.CargarUsuario();
 
-     
-    this.notificacionesService.$MostrarNotificaciones.subscribe(res => {
-      if(res == true && this.mostrarNotificaciones == false){
-        this.mostrarNotificaciones = true;
-        console.log(this.mostrarNotificaciones)
-      }else {
-        this.mostrarNotificaciones = false;
-      }
-    })
+
   }
 
   openModal(){

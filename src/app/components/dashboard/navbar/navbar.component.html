@@ -1,76 +1,97 @@
 <!-- <mat-toolbar> -->
-  <div class="container-navbar">
-    <div class="contaier-log">
-      <a class="navbar-brand text-ligth" [routerLink]="['/dashboard/']"><strong>HoneyApp</strong></a>
+<div class="container-navbar">
+  <div class="contaier-log">
+    <a class="navbar-brand text-ligth" [routerLink]="['/dashboard/']"><strong>HoneyApp</strong></a>
+  </div>
+  <div class="container-options">
+
+
+    <a class="active-top" aria-current="page" [routerLink]="['/dashboard/']" (click)="CargarPublicaciones()">
+
+      <mat-icon [matBadgeHidden]="newPublication" matBadge="1+" matBadgeColor="warn" matBadgeSize="small">home
+      </mat-icon>
+      <p> Home</p>
+    </a>
+
+
+    <a class="" aria-current="page" [routerLink]="['/dashboard/chats']">
+      <mat-icon [matBadgeHidden]="hidden"
+        matBadge="{{messageRead.toString() | slice:0:1}}{{messageRead.toString().length > 1 ? '+': ''}}"
+        matBadgeColor="warn" matBadgeSize="small">chat</mat-icon>
+      <p> Chats</p>
+    </a>
+    <a class="" aria-current="page" [routerLink]="['/dashboard/ayuda']">
+      <mat-icon>info</mat-icon>
+      <p> Ayuda</p>
+    </a>
+    <div class="notifiaciones" aria-current="page" (click)="RefrescarNotificaciones()" (click)="mostrarNotificaciones()">
+      <span>
+        <mat-icon [matBadgeHidden]="newNotifyPer"
+          matBadge="{{notificationRead.toString() | slice:0:1}}{{notificationRead.toString().length > 1 ? '+': ''}}"
+          matBadgeColor="warn" matBadgeSize="small">{{icono}}</mat-icon>
+        Notificaciones
+      </span>
     </div>
-    <div class="container-options">
-      
-         
-            <a class="active-top" aria-current="page" [routerLink]="['/dashboard/']" (click)="CargarPublicaciones()">
-
-              <mat-icon [matBadgeHidden]="newPublication" matBadge="1+" matBadgeColor="warn" matBadgeSize="small">home</mat-icon>
-              <p> Home</p>
-            </a>
-        
-        
-            <a class="" aria-current="page" [routerLink]="['/dashboard/chats']">
-              <mat-icon [matBadgeHidden]="hidden" matBadge="{{messageRead.toString() | slice:0:1}}{{messageRead.toString().length > 1 ? '+': ''}}" matBadgeColor="warn" matBadgeSize="small">chat</mat-icon>
-              <p> Chats</p>
-            </a>
-          <a class="" aria-current="page" [routerLink]="['/dashboard/ayuda']">
-            <mat-icon>info</mat-icon>
-            <p> Ayuda</p>
-          </a>
-
-          <a class="" aria-current="page"  (click)="RefrescarNotificaciones()" (click)="mostrarNotificaciones()" [routerLink]="['/dashboard/']">
-            <mat-icon [matBadgeHidden]="newNotifyPer" matBadge="{{notificationRead.toString() | slice:0:1}}{{notificationRead.toString().length > 1 ? '+': ''}}" matBadgeColor="warn" matBadgeSize="small">{{icono}}</mat-icon>
-            <p>Notificaciones</p>
-          </a>
-          
-          <!-- <a *ngIf="newNotifyPer==true" class="" aria-current="page" (click)="Notificaciones()">
+    <!-- <a *ngIf="newNotifyPer==true" class="" aria-current="page" (click)="Notificaciones()">
             <mat-icon matBadge="1+" matBadgeColor="warn" matBadgeSize="small">notifications_active</mat-icon>
             <p>Notificaciones</p>
           </a> -->
-        
-         
-          
+  </div>
+  <div class="container-perfil d-flex">
+    <div class="dropdown">
+      <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+        aria-expanded="false"><i class="bi bi-person-circle"></i>
+        {{usuario.nombreUsuario}}
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+        <li><a class="dropdown-item" [routerLink]="['/dashboard/usuario']"><i class="bi bi-person-bounding-box"></i>
+            Perfil</a></li>
+        <li><a class="dropdown-item" [routerLink]="['/dashboard/ajustes']"><i class="bi bi-gear-fill"></i> Ajustes</a>
+        </li>
+        <li>
+          <hr class="dropdown-divider">
+        </li>
+        <li><a class="dropdown-item" role="button" (click)="logout()"><i class="bi bi-door-open-fill"></i> Cerrar
+            Session</a></li>
+      </ul>
     </div>
-    <div class="container-perfil d-flex">      
-      <div class="dropdown">
-        <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-person-circle"></i>
-          {{usuario.nombreUsuario}}
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-          <li><a class="dropdown-item" [routerLink]="['/dashboard/usuario']"><i class="bi bi-person-bounding-box"></i> Perfil</a></li>
-          <li><a class="dropdown-item" [routerLink]="['/dashboard/ajustes']"><i class="bi bi-gear-fill"></i> Ajustes</a></li>
-          <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item" role="button" (click)="logout()"><i class="bi bi-door-open-fill"></i> Cerrar Session</a></li>
-        </ul>
-      </div>
-    </div>
+  </div>
 
+</div>
+
+<div *ngIf="mostrarNotificacion" class="bloq-notificacion">
+  <app-notificaciones></app-notificaciones>
+</div>
+
+<div class="navbar-mobile">
+  <div class="navbar-mobile-items">
+
+
+    <a class="btnMobil" aria-current="page" [routerLink]="['/dashboard/chats']">
+      <mat-icon [matBadgeHidden]="hidden"
+        matBadge="{{messageRead.toString() | slice:0:1}}{{messageRead.toString().length > 1 ? '+': ''}}"
+        matBadgeColor="warn" matBadgeSize="small">chat</mat-icon>
+    </a>
+
+
+    <a class="btnMobil  activeNabMobil" aria-current="page" [routerLink]="['/dashboard/']">
+      <mat-icon>home</mat-icon>
+    </a>
+
+
+    <a class="btnMobil " aria-current="page" [routerLink]="['/dashboard/ayuda']">
+      <mat-icon>info</mat-icon>
+    </a>
 
 
   </div>
-  <div class="navbar-mobile">
-    <div class="navbar-mobile-items">
-     
-        
-          <a class="btnMobil" aria-current="page" [routerLink]="['/dashboard/chats']"><mat-icon [matBadgeHidden]="hidden" matBadge="{{messageRead.toString() | slice:0:1}}{{messageRead.toString().length > 1 ? '+': ''}}" matBadgeColor="warn" matBadgeSize="small">chat</mat-icon> </a>
-        
-       
-          <a class="btnMobil  activeNabMobil" aria-current="page" [routerLink]="['/dashboard/']"><mat-icon>home</mat-icon></a>
-        
-       
-          <a class="btnMobil " aria-current="page" [routerLink]="['/dashboard/ayuda']"><mat-icon>info</mat-icon></a>
-       
-      
-    </div>
-  </div>
-  <!-- <span>HoneyApp</span> -->
-  <!-- <span class="example-spacer"></span> -->
-  
-    
-  <!-- <span class="example-spacer"></span> -->
-  
+</div>
+
+
+<!-- <span>HoneyApp</span> -->
+<!-- <span class="example-spacer"></span> -->
+
+
+<!-- <span class="example-spacer"></span> -->
+
 <!-- </mat-toolbar> -->
