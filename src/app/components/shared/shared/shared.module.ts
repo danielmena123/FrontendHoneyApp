@@ -12,8 +12,10 @@ import {MatSortModule} from '@angular/material/sort';
 import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatSelectModule} from '@angular/material/select';
-
+import {MatDialogModule} from '@angular/material/dialog';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
+
+
 
 //Angular Material
 import {MatMenuModule} from '@angular/material/menu';
@@ -55,7 +57,8 @@ import {MatBadgeModule} from '@angular/material/badge';
     MatTabsModule,
     MatMenuModule,
     MatBadgeModule,
-    MaterialFileInputModule,
+    MatDialogModule,   
+     MaterialFileInputModule,
   ],
   exports:[
     CommonModule,
@@ -81,6 +84,7 @@ import {MatBadgeModule} from '@angular/material/badge';
     MatTabsModule,
     MatMenuModule,
     MatBadgeModule,
+    MatDialogModule,
     MaterialFileInputModule
   ]
 })

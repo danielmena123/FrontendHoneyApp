@@ -39,7 +39,6 @@ export class StorageService {
           nombreUsuario: this.token["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"],
           img: this.token['http://schemas.microsoft.com/ws/2008/06/identity/claims/userdata'],    
         }
-
         return usuario;
       } catch (error) {
         console.log('----------------------------------------------------errrorrr----------------------------')
