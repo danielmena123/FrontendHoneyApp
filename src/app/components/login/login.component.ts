@@ -70,6 +70,7 @@ export class LoginComponent implements OnInit {
     this.subRef$ = this.dataService.Post<IResponse>(url, this.loginAccess)
                     .subscribe((res) => {
                       const token = res.body?.token;
+                      console.log(token)
                       this.securityService.SetAuthData(token);
                       this.fakeloading();
                     }, err => {

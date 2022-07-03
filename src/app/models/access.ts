@@ -6,6 +6,7 @@ export interface Login{
 export interface UsuarioAccess{
     usuariosId: number,
     nombreUsuario: string,
+    img: string
 }
 
 export interface IResponse{

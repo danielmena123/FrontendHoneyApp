@@ -23,7 +23,12 @@ export class SecurityService {
   }
 
   public GetUser(): any {
+   try {
     return this.storeService.retieveUser('authData');
+   } catch (error) {
+    console.log("aja perrrin te econtre")
+    console.log(error)
+   }
   }
 
   public ResetAuthData(){

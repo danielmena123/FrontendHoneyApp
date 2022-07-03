@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { UsuarioAccess } from '../models/access';
+import jwt_decode from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
@@ -7,6 +8,8 @@ import { UsuarioAccess } from '../models/access';
 export class StorageService {
 
   private storage: any;
+
+  token: any
 
   constructor() { 
     this.storage = sessionStorage;
@@ -29,11 +32,20 @@ export class StorageService {
   public retieveUser(key: string): any{
     var data = sessionStorage.getItem('authData');
     if(data != null){
-      let usuario: UsuarioAccess = {
-        usuariosId: parseFloat(JSON.parse(window.atob(data.split('.')[1]))["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"]),
-        nombreUsuario: JSON.parse(window.atob(data.split('.')[1]))["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"]        
+      this.token =  jwt_decode(data)
+      try {
+        let usuario: UsuarioAccess = {
+          usuariosId: this.token["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"],
+          nombreUsuario: this.token["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"],
+          img: this.token['http://schemas.microsoft.com/ws/2008/06/identity/claims/userdata'],    
+        }
+
+        return usuario;
+      } catch (error) {
+        console.log('----------------------------------------------------errrorrr----------------------------')
+        console.log(error)
       }
-      return usuario;
+      
     }
 
     return;

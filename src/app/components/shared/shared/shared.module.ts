@@ -12,12 +12,8 @@ import {MatSortModule} from '@angular/material/sort';
 import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatSelectModule} from '@angular/material/select';
-<<<<<<< HEAD
-import {MatDialogModule} from '@angular/material/dialog';
-=======
-import { MaterialFileInputModule } from 'ngx-material-file-input';
 
->>>>>>> 8bf863c5ac0499b27209d9053fedc70998c16ca3
+import { MaterialFileInputModule } from 'ngx-material-file-input';
 
 //Angular Material
 import {MatMenuModule} from '@angular/material/menu';
@@ -59,11 +55,7 @@ import {MatBadgeModule} from '@angular/material/badge';
     MatTabsModule,
     MatMenuModule,
     MatBadgeModule,
-<<<<<<< HEAD
-    MatDialogModule
-=======
     MaterialFileInputModule,
->>>>>>> 8bf863c5ac0499b27209d9053fedc70998c16ca3
   ],
   exports:[
     CommonModule,
@@ -89,11 +81,7 @@ import {MatBadgeModule} from '@angular/material/badge';
     MatTabsModule,
     MatMenuModule,
     MatBadgeModule,
-<<<<<<< HEAD
-    MatDialogModule
-=======
     MaterialFileInputModule
->>>>>>> 8bf863c5ac0499b27209d9053fedc70998c16ca3
   ]
 })
 export class SharedModule { }

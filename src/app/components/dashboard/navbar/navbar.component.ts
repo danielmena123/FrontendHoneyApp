@@ -10,18 +10,12 @@ import { SecurityService } from 'src/app/services/security.service';
 import { SignalrcustomService } from 'src/app/services/signalrcustom.service';
 import { environment } from 'src/environments/environment';
 
-import {MatMenuTrigger} from '@angular/material/menu';
-import {MatDialog} from '@angular/material/dialog';
-import { NotificacionesComponent } from '../notificaciones/notificaciones.component';
-
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  @ViewChild('menuTrigger') menuTrigger: MatMenuTrigger;
-
   private apiURL = environment.apiURL;
   mostrarNotificacion: boolean= false
 
@@ -46,7 +40,6 @@ export class NavbarComponent implements OnInit {
     private chatService: ChatsService,
     private notificacionesService: NotificacionesService,
     private dataservice: DataService,
-    public dialog: MatDialog
     ) {
      }
 
@@ -95,16 +88,18 @@ export class NavbarComponent implements OnInit {
     })
   }
 
-  openDialog() {
-    
-     let dialogRef =  this.dialog.open(NotificacionesComponent);
-
-  }
 
   //Cargar Usuario
   CargarUsuario(){
-    var data = this.securityServices.GetUser();
-    this.usuario = data;
+    try {
+      var data = this.securityServices.GetUser();
+      this.usuario = data;
+      console.log(this.usuario)
+    } catch (error) {
+      console.log('ocurrio un errror--------')
+      console.log(error)
+    }
+    // console.log( this.usuario)
   }
 
   //Cargar Salas

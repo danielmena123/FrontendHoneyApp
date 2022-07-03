@@ -70,7 +70,9 @@ export class UsuarioComponent implements OnInit {
     this.contactoForm.patchValue({
       CorreoElectronico: this.usuario.correoElectronico,
       URL: this.usuario.url
+      
     });
+    console.log(this.contactoForm.value.URL)
   }
 
 
