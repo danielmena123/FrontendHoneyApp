@@ -26,7 +26,6 @@ export class SecurityService {
    try {
     return this.storeService.retieveUser('authData');
    } catch (error) {
-    console.log("aja perrrin te econtre")
     console.log(error)
    }
   }
