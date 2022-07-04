@@ -8,10 +8,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { SharedModule } from './components/shared/shared/shared.module';
-import localeEsAR from '@angular/common/locales/es-AR';
+import localeEsSV from '@angular/common/locales/es-SV';
 import { registerLocaleData } from '@angular/common';
 
-registerLocaleData(localeEsAR, 'es-Ar');
+registerLocaleData(localeEsSV, 'es-Sv');
 
 @NgModule({
   declarations: [
@@ -26,7 +26,7 @@ registerLocaleData(localeEsAR, 'es-Ar');
     FormsModule,
     SharedModule
   ],
-  providers: [{provide: LOCALE_ID, useValue: "es-Ar"}],
+  providers: [{provide: LOCALE_ID, useValue: "es-Sv"}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -144,13 +144,14 @@ background: var(--color-secundario) !important;
   overflow: hidden;
   border-radius: 100%;
   border: solid 1px gray;
+  min-width: 24px;
 }
 
 .container-img__perfil img {
   width: 100%;
   background-repeat: no-repeat;
   background-position: center;
-  background-size: cover;
+  background-size: cover;  
 }
 
 @media (max-width: 600px){
