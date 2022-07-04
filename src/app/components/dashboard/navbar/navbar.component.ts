@@ -94,7 +94,6 @@ export class NavbarComponent implements OnInit {
     try {
       var data = this.securityServices.GetUser();
       this.usuario = data;
-      console.log(this.usuario)
     } catch (error) {
       console.log('ocurrio un errror--------')
       console.log(error)

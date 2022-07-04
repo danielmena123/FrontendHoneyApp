@@ -22,6 +22,7 @@ import { ComentariosEditComponent } from './home/publicaciones/comentarios-edit/
 import { RespuestasEditComponent } from './home/publicaciones/comentarios/respuestas-edit/respuestas-edit.component';
 import { UsuarioComponent } from './usuario/usuario.component';
 import { AjustesComponent } from './ajustes/ajustes.component';
+import { DestacadosComponent } from './home/destacados/destacados.component';
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import { AjustesComponent } from './ajustes/ajustes.component';
     RespuestasEditComponent,
     UsuarioComponent,
     AjustesComponent,
+    DestacadosComponent,
   ],
   imports: [
     CommonModule,
