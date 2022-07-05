@@ -45,7 +45,6 @@ export class NotificacionesComponent implements OnInit {
     const url = `${this.apiURL}/Notificaciones/${this.usuario.usuariosId}`;
     this.dataServices.get<NotificacionesForo[]>(url).subscribe(res => {
       this.notificaciones = res.body!;
-      console.log(this.notificaciones)
     })
   }
 

@@ -87,7 +87,6 @@ export class NavbarComponent implements OnInit {
     this.notificacionesService.$MostrarNotificaciones.subscribe(res => {
       if(res == true && this.mostrarNotificacion == false){
         this.mostrarNotificacion = true;
-        console.log(this.mostrarNotificacion)
       }else {
         this.mostrarNotificacion = false;
       }
@@ -174,7 +173,8 @@ export class NavbarComponent implements OnInit {
   }
 
   mostrarNotificaciones(){
-    this.notificacionesService.$MostrarNotificaciones.emit(true);
+      this.notificacionesService.$MostrarNotificaciones.emit(true);
     this.notificacionesService.$refrescarNotificaciones.emit(true);
+
   }
 }
