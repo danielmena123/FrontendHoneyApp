@@ -40,12 +40,13 @@
   <div class="container-perfil d-flex">
     <div class="dropdown">
       <button class="btn btn-dark dropdown-toggle d-flex" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-          <div class="container-img__perfil">
-            <img *ngIf="this.usuario.img" [src]="this.usuario.img"  alt="">
-            <i *ngIf="!this.usuario.img" class="bi bi-person-bounding-box"></i>
-            <span>{{usuario.nombreUsuario}}</span>
-          </div>
+        <div class="container-img__perfil">
+          <img *ngIf="this.usuario.img" [src]="this.usuario.img"  alt="">
+        </div>
+        <i *ngIf="!this.usuario.img" class="bi bi-person-bounding-box"></i>
+        <span>{{usuario.nombreUsuario}}</span>
       </button>
+      
       
       <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
         <li><a class="dropdown-item" [routerLink]="['/dashboard/usuario']"><i class="bi bi-person-bounding-box"></i>

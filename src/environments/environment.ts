@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiURL:'https://localhost:5001/api',
+  apiURL:'https://honeyappservice.azurewebsites.net/api',
   firebaseConfig: {
     apiKey: "AIzaSyDmZpkS0TQ7zVYHlkwQRIESFkSBarKbxys",  
     authDomain: "honeyapp-da6ed.firebaseapp.com",  

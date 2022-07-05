@@ -88,7 +88,6 @@ export class NavbarComponent implements OnInit {
     })
   }
 
-
   //Cargar Usuario
   CargarUsuario(){
     try {
