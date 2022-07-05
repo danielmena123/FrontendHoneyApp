@@ -7,7 +7,8 @@ export interface NotificacionesNoLeidas{
 }
 
 export interface NotificacionesForo{
-    notificacion_PId?: number;
+    notificacionesId?: number;
+    nombreUsuarioReferencia?: string;
     descripcion: string;
     fecha?: Date;
     referenciaId: number;
@@ -16,4 +17,5 @@ export interface NotificacionesForo{
     notificacion?: string;
     usuarioReceptorId: number;
     usuariosId: number;
+    url?: string
 }

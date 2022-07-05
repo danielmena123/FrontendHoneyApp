@@ -17,6 +17,7 @@ export class NotificacionesComponent implements OnInit {
 
   usuario: UsuarioAccess;
   notificaciones: NotificacionesForo[];
+  like: boolean;
 
   constructor(
     private notificacionesService: NotificacionesService,
@@ -44,6 +45,14 @@ export class NotificacionesComponent implements OnInit {
     const url = `${this.apiURL}/Notificaciones/${this.usuario.usuariosId}`;
     this.dataServices.get<NotificacionesForo[]>(url).subscribe(res => {
       this.notificaciones = res.body!;
+      console.log(this.notificaciones)
+    })
+  }
+
+  Eliminar(notificacionesId: number | undefined){
+    const url = `${this.apiURL}/Notificaciones/${notificacionesId}`;
+    this.dataServices.delete(url).subscribe(res => {
+      console.log(this.CargarDatos())
     })
   }
 

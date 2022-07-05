@@ -58,7 +58,7 @@ export class PublicacionesComponent implements OnInit, OnDestroy {
       }
     });
     this.publicacionesService.$modal.subscribe(res => {
-      console.log("yes")
+
       if(res == true){
         this.modalSwitch = false;
         console.log(this.modalSwitch)
@@ -137,7 +137,7 @@ export class PublicacionesComponent implements OnInit, OnDestroy {
         if(this.usuario.usuariosId != this.publicaciones[index].usuariosId){
           const urlNoti = `${this.apiURL}/Notificaciones/Likes`;
           this.notificacion = {
-            descripcion: `A ${this.usuario.nombreUsuario} le gusto tu Publicacion`,
+            descripcion: `le gusto tu Publicacion`,
             referenciaId: this.publicaciones[index].publicacionesId,
             tipo_NotificacionesId: 4,
             usuarioReceptorId: this.publicaciones[index].usuariosId,

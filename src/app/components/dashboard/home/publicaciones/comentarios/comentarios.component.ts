@@ -99,7 +99,7 @@ export class ComentariosComponent implements OnInit {
         const urlNoti = `${this.apiURL}/Notificaciones`;
 
         this.notificacion = {
-          descripcion: `${this.usuario.nombreUsuario} Comento tu Publicacion`,
+          descripcion: `comento tu Publicacion`,
           referenciaId: this.publicacionesId,
           tipo_NotificacionesId: 1,
           usuarioReceptorId: this.usuarioPublicacion,

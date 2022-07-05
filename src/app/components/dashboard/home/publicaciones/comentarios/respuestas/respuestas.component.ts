@@ -128,7 +128,7 @@ export class RespuestasComponent implements OnInit {
         if(this.usuario.usuariosId != this.respuestas[index].usuariosId){
           const urlNoti = `${this.apiURL}/Notificaciones/Likes`;
           this.notificacion = {
-            descripcion: `A ${this.usuario.nombreUsuario} le gusto tu Respuesta`,
+            descripcion: `le gusto tu Respuesta`,
             referenciaId: this.respuestas[index].respuestasId,
             tipo_NotificacionesId: 6,
             usuarioReceptorId: this.respuestas[index].usuariosId,

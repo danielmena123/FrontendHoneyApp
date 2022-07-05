@@ -1,20 +1,39 @@
 <div class="container">
 
-    <mat-card class="example-card mat-elevation-z8">
-      <mat-card-title>
-        <h3>NOTIFICACIONES</h3>
-      </mat-card-title>
-      <mat-card-content>
-        <div class="notificacion-scroll">
-          <div class="d-flex content-notifiacion" *ngFor="let n of notificaciones">
-            <section>
-              <p>{{n.descripcion}}</p>
-            </section>
-            <p>{{n.fecha | date: 'shortTime'}}</p>
+  <mat-card class="example-card mat-elevation-z8">
+    <mat-card-title>
+      <h3>NOTIFICACIONES</h3>
+    </mat-card-title>
+    <mat-card-content>
+      <div class="notificacion-scroll">
+        <div class="d-flex content-notifiacion" *ngFor="let n of notificaciones">
+          <div class="container-img__perfil">
+            <img *ngIf="n.url" [src]="n.url" alt="">
           </div>
+          <div class="info-container">
+            <section class="descripcion-notificacion" *ngIf="n.notificacion == 'LikePublicacion'">
+              <p>A <b>{{n.nombreUsuarioReferencia}}</b> {{n.descripcion}}</p>
+            </section>
+            <section class="descripcion-notificacion" *ngIf="n.notificacion != 'LikePublicacion'">
+              <p><b>{{n.nombreUsuarioReferencia}}</b> {{n.descripcion}}</p>
+            </section>
+
+            <p class="fecha">{{n.fecha | date: 'shortTime'}}</p>
+          </div>
+          <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="Eliminar(n.notificacionesId)" >
+              <mat-icon>delete_forever</mat-icon>
+              <span>Eliminar</span>
+            </button>
+
+          </mat-menu>
         </div>
-      </mat-card-content>
-      <!--Ejemplo de notifiaciones -->
-    </mat-card>
+      </div>
+    </mat-card-content>
+    <!--Ejemplo de notifiaciones -->
+  </mat-card>
 
 </div>

@@ -65,6 +65,12 @@ export class NavbarComponent implements OnInit {
         this.CargarNotificaciones();
       }
     });    
+    this.notificacionesService.$refrescarNotificaciones.subscribe(res => {
+      if(res == true){
+        this.CargarNotificaciones();
+      }
+    });    
+    this
     this.chatService.$refrescarRooms.subscribe(res => {
       if(res == true){
         this.CargarRooms();
@@ -145,7 +151,7 @@ export class NavbarComponent implements OnInit {
       this.notificationRead = res.body!.notificacionnoleidas;
       if(this.notificationRead > 0){
         this.newNotifyPer = false;
-        this.icono = "notifications_active";
+        //this.icono = "notifications_active";
       }
       else{
         this.newNotifyPer = true;
@@ -169,5 +175,6 @@ export class NavbarComponent implements OnInit {
 
   mostrarNotificaciones(){
     this.notificacionesService.$MostrarNotificaciones.emit(true);
+    this.notificacionesService.$refrescarNotificaciones.emit(true);
   }
 }
