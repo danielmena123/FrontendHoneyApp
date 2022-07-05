@@ -17,5 +17,6 @@ export interface NotificacionesForo{
     notificacion?: string;
     usuarioReceptorId: number;
     usuariosId: number;
-    url?: string
+    url?: string;
+    shortime?: boolean;
 }

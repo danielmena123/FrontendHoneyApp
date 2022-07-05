@@ -169,12 +169,16 @@ export class NavbarComponent implements OnInit {
   }
 
   RefrescarNotificaciones(){
-    this.notificacionesService.$refrescarNotificaciones.emit(true);
+    var anything = {};
+    const url = `${this.apiURL}/Notificaciones/${this.usuario.usuariosId}`;
+    this.dataservice.Put(url, anything).subscribe(res => {
+      console.log(res);
+      this.notificacionesService.$refrescarNotificaciones.emit(true);
+    })    
   }
 
   mostrarNotificaciones(){
       this.notificacionesService.$MostrarNotificaciones.emit(true);
-    this.notificacionesService.$refrescarNotificaciones.emit(true);
-
+      this.notificacionesService.$refrescarNotificaciones.emit(true);
   }
 }

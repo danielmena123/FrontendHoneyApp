@@ -18,7 +18,8 @@
               <p><b>{{n.nombreUsuarioReferencia}}</b> {{n.descripcion}}</p>
             </section>
 
-            <p class="fecha">{{n.fecha | date: 'shortTime'}}</p>
+            <p *ngIf="n.shortime == true" class="fecha">{{n.fecha | date:'h:mm a':'GMT-12:00'}}</p>
+            <p *ngIf="n.shortime == false" class="fecha">{{n.fecha | date: 'mediumDate':'-12:00'}}</p>
           </div>
           <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
             <mat-icon>more_vert</mat-icon>

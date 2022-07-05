@@ -45,6 +45,14 @@ export class NotificacionesComponent implements OnInit {
     const url = `${this.apiURL}/Notificaciones/${this.usuario.usuariosId}`;
     this.dataServices.get<NotificacionesForo[]>(url).subscribe(res => {
       this.notificaciones = res.body!;
+      this.notificaciones.forEach(item => {
+        const result =  new Date(Date.now()).getTime() - new Date(item.fecha!).getTime();
+        if ((result/(1000*60*60)) < 24){
+          item.shortime = true;
+        }else{
+          item.shortime = false;
+        }
+      })
     })
   }
 
