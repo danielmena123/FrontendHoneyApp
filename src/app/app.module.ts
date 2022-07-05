@@ -11,7 +11,7 @@ import { SharedModule } from './components/shared/shared/shared.module';
 import localeEsSV from '@angular/common/locales/es-SV';
 import { registerLocaleData } from '@angular/common';
 
-registerLocaleData(localeEsSV, 'es-Sv');
+registerLocaleData(localeEsSV, 'es-SV');
 
 @NgModule({
   declarations: [
@@ -26,7 +26,7 @@ registerLocaleData(localeEsSV, 'es-Sv');
     FormsModule,
     SharedModule
   ],
-  providers: [{provide: LOCALE_ID, useValue: "es-Sv"}],
+  providers: [{provide: LOCALE_ID, useValue: 'es-SV'}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

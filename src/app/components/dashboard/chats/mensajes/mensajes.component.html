@@ -42,8 +42,8 @@
                             </mat-card-header>                            
                             <mat-card-content>
                                 <p>{{m.descripcion}}</p>
-                                <h5 *ngIf="m.shortime == true">{{m.fecha | date: 'shortTime':'GMT':"en_SV"}}</h5>
-                                <h5 *ngIf="m.shortime == false">{{m.fecha | date: 'mediumDate':'GMT':"en_SV"}}</h5> 
+                                <h5 *ngIf="m.shortime == true">{{m.fecha | date: 'shortTime':'-12:00'}}</h5>
+                                <h5 *ngIf="m.shortime == false">{{m.fecha | date: 'mediumDate':'-12:00'}}</h5> 
                             </mat-card-content>
                         </mat-card>
                     </div>       

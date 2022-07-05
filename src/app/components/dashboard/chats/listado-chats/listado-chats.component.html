@@ -17,8 +17,8 @@
                                         <mat-icon>account_circle</mat-icon>
                                         <h4>{{c.nombreUsuario}}</h4>  
                                     </div>
-                                    <h5 *ngIf="c.shortime == true" class="fecha-head mt-1">{{c.lastFecha | date :'shortTime':'GMT':"en_SV"}}</h5>
-                                    <h5 *ngIf="c.shortime == false" class="fecha-head mt-1">{{c.lastFecha | date :'mediumDate':'GMT':"en_SV"}}</h5>
+                                    <h5 *ngIf="c.shortime == true" class="fecha-head mt-1">{{c.lastFecha | date:'shortTime':'-12:00':'es-SV'}}</h5>
+                                    <h5 *ngIf="c.shortime == false" class="fecha-head mt-1">{{c.lastFecha | date:'mediumDate':'-12:00'}}</h5>
                                 </div>
                                 <div class="d-flex content-chat">
                                     <div class="d-flex">

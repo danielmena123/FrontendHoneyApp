@@ -25,7 +25,7 @@
                 <mat-divider inset></mat-divider>
                 <div class="container-buttons">
                     <button mat-button color="primary" (click)="addLike(r.respuestasId, i)">{{r.numLikes}} | <mat-icon>thumb_up</mat-icon> Me gusta</button>   
-                    <button mat-button disabled>{{r.fecha | date:'shortTime':'GMT':"en_SV"}}</button>       
+                    <button mat-button disabled>{{r.fecha | date:'shortTime':'-12:00'}}</button>       
                 </div>   
                 <mat-divider inset></mat-divider>
             </mat-card-content>
