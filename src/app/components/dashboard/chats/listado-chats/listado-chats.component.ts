@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { UsuarioAccess } from 'src/app/models/access';
 import { Chats } from 'src/app/models/chats';
 import { ChatsService } from 'src/app/services/chats.service';
@@ -14,6 +14,8 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./listado-chats.component.css']
 })
 export class ListadoChatsComponent implements OnInit {
+
+  @Output() openMessage = new EventEmitter<boolean>();
 
   private apiURL = environment.apiURL;
 
@@ -71,7 +73,7 @@ export class ListadoChatsComponent implements OnInit {
 
   //Funcion Abrir Componente Mensaje
   openMensajes(ChatId: number, secondUserName: string){    
-
+    this.openMessage.emit(true)
     //Construir data a enviar
     const data = {
       ChatId: ChatId,

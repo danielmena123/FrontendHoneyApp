@@ -1,17 +1,22 @@
 <section>
     <div class="container">
         <div class="row">
-            <div class="col-lg-3">
+            <div class="col-lg-3 col-sm-12">
                 <mat-card class="card-listado-chats bg-light">
                     <mat-card-header class="d-flex">
                         <mat-card-title>Chatea con tus amigos!</mat-card-title>
                         <mat-card-subtitle><button mat-raised-button color="primary" (click)="openModal()"><mat-icon>add_comment</mat-icon> Nuevo</button></mat-card-subtitle>                                          
                     </mat-card-header>
                 </mat-card>
-                <app-listado-chats></app-listado-chats>
+                <app-listado-chats (openMessage)="openMessage($event)" ></app-listado-chats>
             </div>
-            <div class="col-lg-9">
-                <mat-card class="card-chat bg-light">
+            <div class="col-lg-9 col-sm-12 chat-tel" *ngIf="currentScreenSize != 'XSmall'">
+                <mat-card class="card-chat bg-light" >
+                    <app-mensajes></app-mensajes>
+                </mat-card>
+            </div>
+            <div class="col-lg-9 col-sm-12 chat-tel" *ngIf="currentScreenSize == 'XSmall' && openMessag">
+                <mat-card class="card-chat bg-light" >
                     <app-mensajes></app-mensajes>
                 </mat-card>
             </div>

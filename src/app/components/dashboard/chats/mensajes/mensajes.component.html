@@ -1,4 +1,4 @@
-<div class="container" *ngIf="mostrar==true">
+<div class="" *ngIf="mostrar==true">
     
         <mat-card class="lista-mensajes">
             <mat-card-header class="d-flex header-chat">
@@ -51,7 +51,7 @@
             </mat-card-content>
         </mat-card>
     
-    <form [formGroup]="mensajeForm" (ngSubmit)="enviarMensaje()">
+    <form class="escribir-mensaje" [formGroup]="mensajeForm" (ngSubmit)="enviarMensaje()">
         <div class="mb-3 textComentario">    
             <input type="text" class="form-control" formControlName="Descripcion" placeholder="Escriba un Mensaje...">
             <!-- <textarea class="form-control" formControlName="Descripcion" rows="1" placeholder="Escriba un Mensaje..." (keypress)="($event.which === 13)?enviarMensaje():0"></textarea> -->
