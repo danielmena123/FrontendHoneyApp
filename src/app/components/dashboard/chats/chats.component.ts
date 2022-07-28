@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { ChatsService } from 'src/app/services/chats.service';
 import { MensajesService } from 'src/app/services/mensajes.service';
 import { ModalesService } from 'src/app/services/modales.service';
@@ -27,6 +27,28 @@ export class ChatsComponent implements OnInit {
     [Breakpoints.Large, 'Large'],
     [Breakpoints.XLarge, 'XLarge'],
   ]);
+
+
+
+  //camara
+  WIDTH = 300;
+  HEIGHT = 200;
+  @Output() foto = new EventEmitter<any>();
+  @Input() target: string;
+
+  @ViewChild("video")
+  public video: ElementRef;
+
+  @ViewChild("canvas")
+  public canvas: ElementRef;
+
+  captures: string[] = [];
+  error: any;
+  isCaptured: boolean = false;
+  btnCaptured: boolean = false;
+  stream: any
+
+  aceptFoto: boolean = false
 
   constructor(private modal: ModalesService, private breakpointObserver: BreakpointObserver) { 
     breakpointObserver
@@ -61,5 +83,54 @@ export class ChatsComponent implements OnInit {
     this.openMessag = req
     console.log(this.openMessage)
   }
+
+
+  //camara
+  async ngAfterViewInit() {
+    await this.setupDevices();
+  }
+  
+  async setupDevices() {
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+      try {
+         this.stream = await navigator.mediaDevices.getUserMedia({
+          video: true
+        });
+        if (this.stream ) {
+          console.log('btn captresc', this.btnCaptured)
+          this.btnCaptured = true
+          console.log(this.btnCaptured)
+          this.video.nativeElement.srcObject = this.stream ;
+          this.video.nativeElement.play();
+          this.error = null;
+        } else {
+          this.error = "You have no output video device";
+        }
+      } catch (e) {
+        this.error = e;
+      }
+    }
+  }
+  
+  capture() {
+    this.drawImageToCanvas(this.video.nativeElement);
+    this.captures.push(this.canvas.nativeElement.toDataURL("image/png"));
+    this.aceptFoto = true
+    this.isCaptured = true;
+    console.log(this.captures)
+  }
+  
+  drawImageToCanvas(image: any) {
+    this.canvas.nativeElement
+      .getContext("2d")
+      .drawImage(image, 0, 0, this.WIDTH, this.HEIGHT);
+  }
+  
+  async aceptImgs(){
+    this.foto.emit(this.captures);
+  }
+  
+  
+  
 
 }

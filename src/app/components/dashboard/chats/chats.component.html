@@ -9,6 +9,37 @@
                     </mat-card-header>
                 </mat-card>
                 <app-listado-chats (openMessage)="openMessage($event)" ></app-listado-chats>
+
+                <div class="video-container">
+                    <video
+                    [class.show]="!isCaptured"
+                    [class.hide]="isCaptured"
+                    #video
+                    id="video"
+                    [width]="WIDTH"
+                    [height]="HEIGHT"
+                    autoplay
+                    ></video>
+                    <canvas
+                    [class.show]="isCaptured"
+                    [class.hide]="!isCaptured"
+                    #canvas
+                    id="canvas"
+                    [width]="WIDTH"
+                    [height]="HEIGHT"
+                    ></canvas>
+                </div>
+                
+                 <div class="snap-container">
+                  <button class="btn btn-primary" *ngIf="aceptFoto" (click)="aceptImgs()" data-dismiss="modal" aria-label="Close">
+                      Acept Photo
+                  </button>  
+                 </div>      
+                <div class="snap-container">
+                    <button class="btn btn-primary" *ngIf="!isCaptured" (click)="capture()">
+                        Snap Photo
+                    </button>
+                </div>
             </div>
             <div class="col-lg-9 col-sm-12 chat-tel" *ngIf="currentScreenSize != 'XSmall'">
                 <mat-card class="card-chat bg-light" >
