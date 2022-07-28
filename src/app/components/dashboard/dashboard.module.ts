@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgxDropzoneModule } from 'ngx-dropzone';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
@@ -51,7 +52,8 @@ import { DestacadosComponent } from './home/destacados/destacados.component';
   imports: [
     CommonModule,
     DashboardRoutingModule,
-    SharedModule
+    SharedModule,
+    NgxDropzoneModule
   ]
 })
 export class DashboardModule { }

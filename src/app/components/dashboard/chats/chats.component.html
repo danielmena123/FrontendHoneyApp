@@ -11,7 +11,7 @@
                 <app-listado-chats (openMessage)="openMessage($event)" ></app-listado-chats>
 
                 <input type="file" capture="camera">
-                
+
                 <div class="video-container">
                     <video
                     [class.show]="!isCaptured"
@@ -43,6 +43,18 @@
                     </button>
                 </div>
             </div>
+
+            <ngx-dropzone >
+                <div class="d-flex flex-column mx-auto">
+                  <ngx-dropzone-label class="m-0">tomar foto</ngx-dropzone-label>
+                  <ngx-dropzone-label class="m-0">tomar foto</ngx-dropzone-label>
+                </div>
+                <ngx-dropzone-image-preview  >
+                  <!-- <ngx-dropzone-label>{{ f.name }}</ngx-dropzone-label> -->
+                </ngx-dropzone-image-preview>
+              </ngx-dropzone>
+              
+              
             <div class="col-lg-9 col-sm-12 chat-tel" *ngIf="currentScreenSize != 'XSmall'">
                 <mat-card class="card-chat bg-light" >
                     <app-mensajes></app-mensajes>

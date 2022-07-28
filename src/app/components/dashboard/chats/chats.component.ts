@@ -28,7 +28,16 @@ export class ChatsComponent implements OnInit {
     [Breakpoints.XLarge, 'XLarge'],
   ]);
 
+  @Input()accept:string='*';
+  @Input()files: File[] = [];
+  @Input()file: File;
+  @Input()placeholder:string ='';
+  @Output() multipleImages = new EventEmitter<any>();
+  @Output() message:any = new EventEmitter<any>();
 
+  label:string = 'selecciona los archivos';
+  labelPesoMax:string = 'Peso máximo por imagen 1MB';
+  
 
   //camara
   WIDTH = 300;
@@ -50,7 +59,7 @@ export class ChatsComponent implements OnInit {
 
   aceptFoto: boolean = false
 
-  constructor(private modal: ModalesService, private breakpointObserver: BreakpointObserver) { 
+  constructor(private modal: ModalesService, private breakpointObserver: BreakpointObserver, private elementRef:ElementRef) { 
     breakpointObserver
       .observe([
         Breakpoints.XSmall,
@@ -130,6 +139,22 @@ export class ChatsComponent implements OnInit {
     this.foto.emit(this.captures);
   }
   
+
+  // onSelect(event) {
+  //   if(this.files.length < 4){
+  //   this.files.push(...event.addedFiles);
+  //   this.multipleImages.emit(this.files)
+  //   this.message.emit(event)
+  //   // console.log(this.files)
+  //   }
+  // }
+
+  // onRemove(event) {
+  //   this.files.splice(this.files.indexOf(event), 1);
+  //   this.multipleImages.emit(this.files)
+  //   console.log(this.files)
+  // }
+
   
   
 
