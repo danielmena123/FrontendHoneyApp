@@ -10,6 +10,8 @@
                 </mat-card>
                 <app-listado-chats (openMessage)="openMessage($event)" ></app-listado-chats>
 
+                <input type="file" capture="camera">
+                
                 <div class="video-container">
                     <video
                     [class.show]="!isCaptured"
